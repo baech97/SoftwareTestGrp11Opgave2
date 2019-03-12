@@ -43,12 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateCourse.cs" />
     <Compile Include="CalculateVelocity.cs" />
     <Compile Include="iCalculate.cs" />
+    <Compile Include="iPrintConsole.cs" />
+    <Compile Include="iPrintLog.cs" />
+    <Compile Include="iSeperationChecker.cs" />
     <Compile Include="iTrafficDataSorter.cs" />
     <Compile Include="iTranspondanceDecoder.cs" />
+    <Compile Include="PrintConsole.cs" />
+    <Compile Include="PrintLog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeperationChecker.cs" />
     <Compile Include="TrackDataContainer.cs" />
     <Compile Include="TrafficDataSorter.cs" />
     <Compile Include="TranspondanceDecoder.cs" />
