@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficMonitorGrp11", "AirTrafficMonitorGrp11\AirTrafficMonitorGrp11.csproj", "{BB2A157D-E6D6-4E5C-A379-2D8F239F0DBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirTrafficMonitorGrp11.Unit.Test", "AirTrafficMonitorGrp11.Unit.Test\AirTrafficMonitorGrp11.Unit.Test.csproj", "{FA1DC097-2195-48EC-8FFA-2436775CDFAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BB2A157D-E6D6-4E5C-A379-2D8F239F0DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB2A157D-E6D6-4E5C-A379-2D8F239F0DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB2A157D-E6D6-4E5C-A379-2D8F239F0DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1DC097-2195-48EC-8FFA-2436775CDFAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1DC097-2195-48EC-8FFA-2436775CDFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1DC097-2195-48EC-8FFA-2436775CDFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1DC097-2195-48EC-8FFA-2436775CDFAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
