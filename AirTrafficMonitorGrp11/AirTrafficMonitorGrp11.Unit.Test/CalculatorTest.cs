@@ -10,14 +10,14 @@ namespace AirTrafficMonitorGrp11.Unit.Test
     [TestFixture]
     public class CalculatorTest
     {
-        private //calculator uut;
+        //private; //calculator uut;
         [SetUp]
         public void SetUp()
         {
-            uut = //calculator;
+            //uut = //calculator;
         }
 
-        [Test]
+        //[Test]
 
     }
 }
