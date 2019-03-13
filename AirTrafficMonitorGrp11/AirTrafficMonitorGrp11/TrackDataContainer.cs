@@ -14,7 +14,7 @@ namespace AirTrafficMonitorGrp11
             X = 0;
             Y = 0;
             Altitude = 0;
-            Timestamp = DateTime.Now;
+            Timestamp = "";
             Velocity = 0;
             Course = 0;
         }
@@ -22,7 +22,7 @@ namespace AirTrafficMonitorGrp11
         public int X { get; set; }
         public int Y { get;set; }
         public int Altitude { get; set; }
-        public DateTime Timestamp { get; set; }
+        public string Timestamp { get; set; }
         public double Velocity { get; set; }
         public int Course { get; set; }
     }

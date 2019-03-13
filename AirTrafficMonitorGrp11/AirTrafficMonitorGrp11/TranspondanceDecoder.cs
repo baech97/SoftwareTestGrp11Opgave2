@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace AirTrafficMonitorGrp11
                 _tdc.X = Convert.ToInt32(inputFields[1]);
                 _tdc.Y = Convert.ToInt32(inputFields[2]);
                 _tdc.Altitude = Convert.ToInt32(inputFields[3]);
-                _tdc.Timestamp = Convert.ToDateTime(inputFields[4]);
+                _tdc.Timestamp = Convert.ToDateTime(inputFields[4]).ToString("yyyy-MM-dd HH:mm:ss.fff",CultureInfo.InvariantCulture);
                 tdcList.Add(_tdc);
             }
             DataDecoded?.Invoke(this,tdcList);
