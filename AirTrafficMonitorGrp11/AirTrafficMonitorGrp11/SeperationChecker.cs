@@ -9,15 +9,15 @@ namespace AirTrafficMonitorGrp11
     class SeperationChecker : iSeperationChecker
     {
         public event EventHandler<List<TrackDataContainer>> SeperationChecked;
-        public iCalculate _calculate;
+        public iTrafficDataSorter _dataSorter;
 
-        public SeperationChecker(iCalculate calculate)
+        public SeperationChecker(iTrafficDataSorter dataSorter)
         {
-            _calculate = calculate;
-            _calculate.DataCalculated += OnDataCalculated;
+            _dataSorter = dataSorter;
+            _dataSorter.DataSorted += OnDataSorted;
         }
 
-        public void OnDataCalculated(object sender, List<TrackDataContainer> e)
+        public void OnDataSorted(object sender, List<TrackDataContainer> e)
         {
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
 

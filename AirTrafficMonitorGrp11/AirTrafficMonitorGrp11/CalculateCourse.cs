@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    class CalculateCourse : iCalculate
+    class CalculateCourse : iCalculateCourse
     {
-        private iTrafficDataSorter _dataSorter;
-        public event EventHandler<List<TrackDataContainer>> DataCalculated;
+        private iCalculateVelocity _calculateVelocity;
+        public event EventHandler<List<TrackDataContainer>> CourseCalculated;
+
         private int LastPosition_X;
         private int LastPosition_Y;
         private int CurrentPosition_X;
@@ -17,13 +18,13 @@ namespace AirTrafficMonitorGrp11
 
         private double Course;
 
-        public CalculateCourse(iTrafficDataSorter dataSorter)
+        public CalculateCourse(iCalculateVelocity calculateVelocity)
         {
-            _dataSorter = dataSorter;
-            _dataSorter.DataSorted += OnDataSorted;
+            _calculateVelocity = calculateVelocity;
+            _calculateVelocity.VelocityCalculated += OnVelocityCalculated;
         }
 
-        public void OnDataSorted(object sender, List<TrackDataContainer> e)
+        public void OnVelocityCalculated(object sender, List<TrackDataContainer> e)
         {
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
             foreach (var data in e)
@@ -42,7 +43,7 @@ namespace AirTrafficMonitorGrp11
                 LastPosition_Y = data.Y;
             }
 
-            DataCalculated?.Invoke(this, tdcList);
+            CourseCalculated?.Invoke(this, tdcList);
         }
     }
 }

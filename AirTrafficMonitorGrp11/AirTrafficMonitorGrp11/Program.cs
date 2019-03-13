@@ -13,7 +13,16 @@ namespace AirTrafficMonitorGrp11
         static void Main(string[] args)
         {
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-            TranspondanceDecoder td = new TranspondanceDecoder(receiver);
+            iTranspondanceDecoder decoder = new TranspondanceDecoder(receiver);
+
+            iTrafficDataSorter dataSorter = new TrafficDataSorter(decoder);
+
+            iSeperationChecker separationChecker = new SeperationChecker(dataSorter);
+            iCalculateVelocity calculateVelocity = new CalculateVelocity(dataSorter);
+            iCalculateCourse calculateCourse = new CalculateCourse(calculateVelocity);
+
+            iPrintConsole printConsole = new PrintConsole(calculateCourse, separationChecker);
+            iPrintLog printLog = new PrintLog(separationChecker);
 
             while (true)
                 Thread.Sleep(1000);

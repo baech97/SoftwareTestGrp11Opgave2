@@ -8,14 +8,14 @@ namespace AirTrafficMonitorGrp11
 {
     class PrintConsole : iPrintConsole
     {
-        public iCalculate _calculate;
+        public iCalculateCourse _calculateCourse;
         public iSeperationChecker _seperationChecker;
 
-        public PrintConsole(iCalculate calculate, iSeperationChecker seperationChecker)
+        public PrintConsole(iCalculateCourse calculateCourse, iSeperationChecker seperationChecker)
         {
-            _calculate = calculate;
+            _calculateCourse = calculateCourse;
             _seperationChecker = seperationChecker;
-            _calculate.DataCalculated += OnDataCalculated;
+            _calculateCourse.CourseCalculated += OnCourseCalculated;
             _seperationChecker.SeperationChecked += OnSeparationChecked;
 
         }
@@ -29,7 +29,7 @@ namespace AirTrafficMonitorGrp11
             }
         }
 
-        private void OnDataCalculated(object sender, List<TrackDataContainer> e)
+        private void OnCourseCalculated(object sender, List<TrackDataContainer> e)
         {
             foreach (var data in e)
             {

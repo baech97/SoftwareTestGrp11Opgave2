@@ -48,7 +48,8 @@
   <ItemGroup>
     <Compile Include="CalculateCourse.cs" />
     <Compile Include="CalculateVelocity.cs" />
-    <Compile Include="Interfaces\iCalculate.cs" />
+    <Compile Include="Interfaces\iCalculateCourse.cs" />
+    <Compile Include="Interfaces\iCalculateVelocity.cs" />
     <Compile Include="Interfaces\iPrintConsole.cs" />
     <Compile Include="Interfaces\iPrintLog.cs" />
     <Compile Include="Interfaces\iSeperationChecker.cs" />
