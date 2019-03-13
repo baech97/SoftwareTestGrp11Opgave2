@@ -9,16 +9,21 @@ namespace AirTrafficMonitorGrp11
 {
     class PrintLog : iPrintLog
     {
-        public void EtEllerAndet()
-        {
-            // Opret forbindelse til SeperationChecker, tag  alt indholdet fra denne liste, og læg det ind i filen
-            SeperationChecker
+        public iSeperationChecker _seperationChecker;
 
+        public PrintLog(iSeperationChecker seperationChecker)
+        {
+            _seperationChecker = seperationChecker;
+            _seperationChecker.SeperationChecked += OnSeparationChecked;
+        }
+
+        private void OnSeparationChecked(object sender, List<TrackDataContainer> e)
+        {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt"))
             {
-                foreach (var data in COLLECTION)
+                foreach (var data in e)
                 {
-                    file.WriteLine("TEKST" + data);
+                    file.WriteLine("Time of occurence: {0} \t Tag of involved tracks: {1}", data.Timestamp, data.Tag);
                 }
             }
         }
