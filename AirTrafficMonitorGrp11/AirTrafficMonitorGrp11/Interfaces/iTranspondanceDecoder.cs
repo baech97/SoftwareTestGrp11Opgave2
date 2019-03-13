@@ -8,6 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     interface iTranspondanceDecoder
     {
-        void Decode();
+        void Decode(string transponderData);
     }
 }
