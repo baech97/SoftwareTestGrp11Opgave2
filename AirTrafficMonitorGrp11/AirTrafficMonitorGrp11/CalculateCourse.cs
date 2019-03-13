@@ -9,7 +9,7 @@ namespace AirTrafficMonitorGrp11
     class CalculateCourse : iCalculate
     {
         private iTrafficDataSorter _dataSorter;
-        public event EventHandler<List<TrackDataContainer>> CourseCalculated;
+        public event EventHandler<List<TrackDataContainer>> DataCalculated;
         private int LastPosition_X;
         private int LastPosition_Y;
         private int CurrentPosition_X;
@@ -42,7 +42,7 @@ namespace AirTrafficMonitorGrp11
                 LastPosition_Y = data.Y;
             }
 
-            CourseCalculated?.Invoke(this, tdcList);
+            DataCalculated?.Invoke(this, tdcList);
         }
     }
 }

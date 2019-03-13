@@ -10,7 +10,7 @@ namespace AirTrafficMonitorGrp11
     {
 
         private iTrafficDataSorter _dataSorter;
-        public event EventHandler<List<TrackDataContainer>> VelocityCalculated;
+        public event EventHandler<List<TrackDataContainer>> DataCalculated;
 
         private int LastPosition_X;
         private int LastPosition_Y;
@@ -52,7 +52,7 @@ namespace AirTrafficMonitorGrp11
                 LastTime = data.Timestamp;
             }
 
-            VelocityCalculated?.Invoke(this, tdcList);
+            DataCalculated?.Invoke(this, tdcList);
 
         }
     }

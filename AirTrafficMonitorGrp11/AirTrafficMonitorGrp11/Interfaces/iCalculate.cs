@@ -8,5 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     interface iCalculate
     {
+        event EventHandler<List<TrackDataContainer>> DataCalculated;
     }
 }
