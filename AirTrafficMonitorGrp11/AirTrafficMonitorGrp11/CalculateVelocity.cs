@@ -19,7 +19,9 @@ namespace AirTrafficMonitorGrp11
         private double Velocity;
 
 
-        public void CalculateVelocity()
+
+
+        public void Calculate_Velocity()
         {
             TimeSpan ts = CurrentTime - LastTime;
             timediff = ts.Milliseconds;
