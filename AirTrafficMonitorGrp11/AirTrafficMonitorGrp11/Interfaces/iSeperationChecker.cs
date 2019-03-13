@@ -8,5 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     interface iSeperationChecker
     {
+        event EventHandler<List<TrackDataContainer>> SeperationChecked;
     }
 }

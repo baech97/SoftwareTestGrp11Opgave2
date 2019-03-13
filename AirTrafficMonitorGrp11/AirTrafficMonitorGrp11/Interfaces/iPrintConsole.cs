@@ -8,6 +8,5 @@ namespace AirTrafficMonitorGrp11
 {
     interface iPrintConsole
     {
-        void Print();
     }
 }
