@@ -14,6 +14,12 @@ namespace AirTrafficMonitorGrp11
         {
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
             TranspondanceDecoder td = new TranspondanceDecoder(receiver);
+
+            //Test af hente ting fra containeren
+            TrackDataContainer tdc = new TrackDataContainer();
+            Console.WriteLine(tdc.Altitude);
+            //
+
             while (true)
                 Thread.Sleep(1000);
         }
