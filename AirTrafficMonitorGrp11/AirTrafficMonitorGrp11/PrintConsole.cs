@@ -24,7 +24,7 @@ namespace AirTrafficMonitorGrp11
         {
             foreach (var data in e)
             {
-                Console.WriteLine(data);
+                Console.WriteLine("Time of occurance: " + data.Timestamp + "Tag of the involved track: "+ data.Tag );
                 // ikke færdig endnu.
             }
         }
