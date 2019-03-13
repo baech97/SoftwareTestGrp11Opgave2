@@ -21,7 +21,13 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataDecoded(object sender, List<TrackDataContainer> e)
         {
-
+            foreach (var data in e)
+            {
+                //if ()
+                {
+                    
+                }
+            }
         }
     }
 }
