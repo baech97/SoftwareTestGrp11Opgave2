@@ -31,9 +31,9 @@ namespace AirTrafficMonitorGrp11
                 CurrentPosition_X = data.X;
                 CurrentPosition_Y = data.Y;
 
-                if ( LastPosition_X!= null)
+                if (LastPosition_X == 0)
                 {
-                    Course = 90 - (Math.Atan((CurrentPosition_Y - LastPosition_Y) / (CurrentPosition_X - LastPosition_X)) * (180 * Math.PI));
+                    Course = 90 - Math.Atan((CurrentPosition_Y - LastPosition_Y) / (CurrentPosition_X - LastPosition_X)) * (180 * Math.PI);
                     data.Course = Convert.ToInt32(Course);
                     tdcList.Add(data);
                 }
