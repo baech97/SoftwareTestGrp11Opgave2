@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    class CalculateVelocity
+    class CalculateVelocity : iCalculate
     {
     }
 }
