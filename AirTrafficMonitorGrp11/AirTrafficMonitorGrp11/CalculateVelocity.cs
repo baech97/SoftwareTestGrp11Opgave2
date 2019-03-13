@@ -8,5 +8,8 @@ namespace AirTrafficMonitorGrp11
 {
     class CalculateVelocity : iCalculate
     {
+        private int LastPosition_X;
+        private int LastPosition_Y;
+        
     }
 }
