@@ -14,7 +14,7 @@ namespace AirTrafficMonitorGrp11
             X = 0;
             Y = 0;
             Altitude = 0;
-            Timestamp = "";
+            Timestamp = DateTime.Now;
             Velocity = 0;
             Course = 0;
         }
