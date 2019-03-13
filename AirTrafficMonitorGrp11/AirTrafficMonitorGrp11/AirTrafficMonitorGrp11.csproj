@@ -45,12 +45,12 @@
   <ItemGroup>
     <Compile Include="CalculateCourse.cs" />
     <Compile Include="CalculateVelocity.cs" />
-    <Compile Include="iCalculate.cs" />
-    <Compile Include="iPrintConsole.cs" />
-    <Compile Include="iPrintLog.cs" />
-    <Compile Include="iSeperationChecker.cs" />
-    <Compile Include="iTrafficDataSorter.cs" />
-    <Compile Include="iTranspondanceDecoder.cs" />
+    <Compile Include="Interfaces\iCalculate.cs" />
+    <Compile Include="Interfaces\iPrintConsole.cs" />
+    <Compile Include="Interfaces\iPrintLog.cs" />
+    <Compile Include="Interfaces\iSeperationChecker.cs" />
+    <Compile Include="Interfaces\iTrafficDataSorter.cs" />
+    <Compile Include="Interfaces\iTranspondanceDecoder.cs" />
     <Compile Include="PrintConsole.cs" />
     <Compile Include="PrintLog.cs" />
     <Compile Include="Program.cs" />
