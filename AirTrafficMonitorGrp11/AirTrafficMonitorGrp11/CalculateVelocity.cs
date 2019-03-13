@@ -15,7 +15,12 @@ namespace AirTrafficMonitorGrp11
         private DateTime LastTime;
         private DateTime CurrentTime;
 
+        private double Velocity;
 
 
+        public void CalculateVelocity()
+        {
+            Velocity = 
+        }
     }
 }
