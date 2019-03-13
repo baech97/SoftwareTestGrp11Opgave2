@@ -8,5 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     interface iTrafficDataSorter
     {
+        event EventHandler<List<TrackDataContainer>> DataSorted;
     }
 }
