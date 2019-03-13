@@ -33,8 +33,7 @@ namespace AirTrafficMonitorGrp11
         {
             foreach (var data in e)
             {
-                Console.WriteLine(data);
-                // ikke færdig endnu
+                Console.WriteLine("Tag: " + data.Tag + "\nCurrent position: " + data.X + " meters -" + data.Y + " meters \nCurrent altitude: " + data.Altitude + " meters \nCurrent horizontal velocity: " + data.Velocity + " m/s \nCurrent compass course: " + data.Course + "degrees from north");
             }
         }
 
