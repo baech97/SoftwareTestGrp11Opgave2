@@ -12,15 +12,22 @@ namespace AirTrafficMonitorGrp11
         private int LastPosition_Y;
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
-        private DateTime LastTime;
-        private DateTime CurrentTime;
+        private DateTime LastTime = DateTime.UtcNow;
+        private DateTime CurrentTime = DateTime.Now;
+        private double timediff;
 
         private double Velocity;
 
 
         public void CalculateVelocity()
         {
-            Velocity = 
+            Velocity = (CurrentTime - LastTime) *
+                       ((CurrentPosition_X - LastPosition_X) ^ 2 + (CurrentPosition_Y - LastPosition_Y) ^ 2);
+
+            timediff = CurrentTime - LastTime;
+
         }
+
+       
     }
 }
