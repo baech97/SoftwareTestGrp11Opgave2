@@ -11,8 +11,9 @@ namespace AirTrafficMonitorGrp11
     class TranspondanceDecoder : iTranspondanceDecoder
     {
         private ITransponderReceiver _transponderReceiver;
-        TrackDataContainer _tdc;
         public event EventHandler <List<TrackDataContainer>> DataDecoded;
+        TrackDataContainer _tdc;
+        
 
         public TranspondanceDecoder(ITransponderReceiver transponderReceiver)
         {

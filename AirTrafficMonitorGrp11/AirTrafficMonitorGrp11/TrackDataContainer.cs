@@ -22,7 +22,7 @@ namespace AirTrafficMonitorGrp11
         public int X { get; set; }
         public int Y { get;set; }
         public int Altitude { get; set; }
-        public string Timestamp { get; set; }
+        public DateTime Timestamp { get; set; }
         public double Velocity { get; set; }
         public int Course { get; set; }
     }
