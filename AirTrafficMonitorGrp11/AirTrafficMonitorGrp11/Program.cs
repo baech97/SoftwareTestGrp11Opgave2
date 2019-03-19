@@ -8,7 +8,7 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitorGrp11
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

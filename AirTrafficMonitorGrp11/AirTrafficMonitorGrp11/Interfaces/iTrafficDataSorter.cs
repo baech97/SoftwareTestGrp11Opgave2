@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    interface iTrafficDataSorter
+    public interface iTrafficDataSorter
     {
         event EventHandler<List<TrackDataContainer>> DataSorted;
     }

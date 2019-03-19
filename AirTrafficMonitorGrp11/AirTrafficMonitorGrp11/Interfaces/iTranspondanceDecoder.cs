@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    interface iTranspondanceDecoder
+    public interface iTranspondanceDecoder
     {
         event EventHandler <List<TrackDataContainer>> DataDecoded;
     }

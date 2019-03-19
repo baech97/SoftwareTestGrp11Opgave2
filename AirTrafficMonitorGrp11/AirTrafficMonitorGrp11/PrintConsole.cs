@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    class PrintConsole : iPrintConsole
+    public class PrintConsole : iPrintConsole
     {
         public iCalculateCourse _calculateCourse;
         public iSeperationChecker _seperationChecker;
