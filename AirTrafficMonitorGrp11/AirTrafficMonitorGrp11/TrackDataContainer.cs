@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    class TrackDataContainer
+    public class TrackDataContainer
     {
         public TrackDataContainer()
         {

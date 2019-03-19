@@ -7,7 +7,7 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitorGrp11
 {
-    class TrafficDataSorter : iTrafficDataSorter
+    public class TrafficDataSorter : iTrafficDataSorter
     {
         private iTranspondanceDecoder _decoder;
         public event EventHandler<List<TrackDataContainer>> DataSorted;

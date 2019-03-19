@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    interface iPrintConsole
+    public interface iPrintConsole
     {
     }
 }

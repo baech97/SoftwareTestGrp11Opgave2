@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    class PrintLog : iPrintLog
+    public class PrintLog : iPrintLog
     {
         public iSeperationChecker _seperationChecker;
 

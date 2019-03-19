@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    interface iSeperationChecker
+    public interface iSeperationChecker
     {
         event EventHandler<List<TrackDataContainer>> SeperationChecked;
     }

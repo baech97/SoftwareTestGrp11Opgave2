@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    interface iCalculateCourse
+    public interface iCalculateCourse
     {
         event EventHandler<List<TrackDataContainer>> CourseCalculated;
     }

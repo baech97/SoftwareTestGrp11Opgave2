@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    interface iCalculateVelocity
+    public interface iCalculateVelocity
     {
         event EventHandler<List<TrackDataContainer>> VelocityCalculated;
     }
