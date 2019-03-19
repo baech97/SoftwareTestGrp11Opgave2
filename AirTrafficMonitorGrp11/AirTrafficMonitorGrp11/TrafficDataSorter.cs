@@ -21,21 +21,23 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataDecoded(object sender, List<TrackDataContainer> e)
         {
-            List<TrackDataContainer> tdcList = new List<TrackDataContainer>(); 
-            foreach (var data in e)
-            {
-                if (data.X > 10000 && data.X < 90000)
+            
+            
+                List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
+                foreach (var data in e)
                 {
-                    if (data.Y > 10000 && data.Y < 90000)
+                    if (data.X > 10000 && data.X < 90000)
                     {
-                        if (data.Altitude > 500 && data.Altitude < 20000)
+                        if (data.Y > 10000 && data.Y < 90000)
                         {
-                            tdcList.Add(data);
+                            if (data.Altitude > 500 && data.Altitude < 20000)
+                            {
+                                tdcList.Add(data);
+                            }
                         }
                     }
                 }
-            }
-            DataSorted?.Invoke(this,tdcList);
+                     
         }
     }
 }
