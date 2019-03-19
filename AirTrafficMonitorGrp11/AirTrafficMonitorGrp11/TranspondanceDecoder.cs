@@ -34,8 +34,7 @@ namespace AirTrafficMonitorGrp11
                 _tdc.X = Convert.ToInt32(inputFields[1]);
                 _tdc.Y = Convert.ToInt32(inputFields[2]);
                 _tdc.Altitude = Convert.ToInt32(inputFields[3]);
-                _tdc.Timestamp = DateTime.ParseExact(inputFields[4], "yyyymmddhhmmssfff",CultureInfo.InvariantCulture);
-                _tdc.Timestamp = Convert.ToDateTime(inputFields[4]);
+                _tdc.Timestamp = DateTime.ParseExact(inputFields[4], "yyyyMMddHHmmssfff",CultureInfo.InvariantCulture);
                 tdcList.Add(_tdc);
             }
             DataDecoded?.Invoke(this,tdcList);
