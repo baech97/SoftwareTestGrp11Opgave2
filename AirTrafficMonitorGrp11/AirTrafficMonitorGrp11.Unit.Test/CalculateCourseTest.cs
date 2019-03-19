@@ -10,20 +10,23 @@ namespace AirTrafficMonitorGrp11.Unit.Test
     [TestFixture]
     class CalculateCourseTest
     {
-        private CalculateCourse _uut;
-        private ICalculateCourse _calculateCourse;
+        private CalculateVelocity _uut;
+        private iCalculateCourse _calculateCourse;
+        private iTrafficDataSorter _trafficDataSorter;
 
         [SetUp]
         public void SetUp()
         {
-            _calculateCourse = NSubstitute.Substitute.For<ICalculateCourse>()
+            _calculateCourse = NSubstitute.Substitute.For<iCalculateCourse>();
+            _uut = new CalculateVelocity(_trafficDataSorter);
         }
 
 
         [Test]
         public void Course_is_90()
         {
-
+            List<string> testData = new List<string>();
+            
         }
 
     }
