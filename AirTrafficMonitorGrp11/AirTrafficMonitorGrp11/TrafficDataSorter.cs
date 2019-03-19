@@ -37,6 +37,11 @@ namespace AirTrafficMonitorGrp11
                         }
                     }
                 }
+
+            if (tdcList.Count != 0)
+            {
+                DataSorted?.Invoke(this, tdcList);
+            }
                      
         }
     }
