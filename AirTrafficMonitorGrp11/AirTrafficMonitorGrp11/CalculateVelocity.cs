@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    class CalculateVelocity : iCalculate
+    class CalculateVelocity : iCalculateVelocity
     {
 
         private iTrafficDataSorter _dataSorter;
-        public event EventHandler<List<TrackDataContainer>> DataCalculated;
+        public event EventHandler<List<TrackDataContainer>> VelocityCalculated;
 
         private int LastPosition_X;
         private int LastPosition_Y;
@@ -52,7 +52,7 @@ namespace AirTrafficMonitorGrp11
                 LastTime = data.Timestamp;
             }
 
-            DataCalculated?.Invoke(this, tdcList);
+            VelocityCalculated?.Invoke(this, tdcList);
 
         }
     }
