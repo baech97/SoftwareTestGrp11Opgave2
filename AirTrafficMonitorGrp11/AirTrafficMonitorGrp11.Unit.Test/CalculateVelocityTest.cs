@@ -11,21 +11,27 @@ namespace AirTrafficMonitorGrp11.Unit.Test
     [TestFixture]
     public class CalculateVelocityTest
     {
+        
         private iTrafficDataSorter _dataSorter;
-        public event EventHandler<List<TrackDataContainer>> VelocityCalculated;
-
-        private int LastPosition_X;
-        private int LastPosition_Y;
-        private int CurrentPosition_X;
-        private int CurrentPosition_Y;
-        private DateTime LastTime = DateTime.Now;
-        private DateTime CurrentTime = DateTime.Now;
-        private double timediff;
-        private double Velocity;
+        private CalculateVelocity _uut;
 
         [SetUp]
-        public SetUp()
+        public void SetUp()
         {
+            _dataSorter = NSubstitute.Substitute.For<iTrafficDataSorter>();
+            _uut = new CalculateVelocity(_dataSorter);
+        }
+
+        [Test]
+        public void Is_Event_raised()
+        {
+            List<string> testdata = new List<string>();
+            testdata.Add();
+            testdata.Add("BCD123;10005;85890;12000;20151006213456789");
+            testdata.Add("XYZ987;25059;75654;4000;20151006213456789");
+
+            _dataSorter
+
 
         }
     }
