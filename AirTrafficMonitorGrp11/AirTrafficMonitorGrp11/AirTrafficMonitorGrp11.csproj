@@ -60,6 +60,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeperationChecker.cs" />
+    <Compile Include="SeperationContainer.cs" />
     <Compile Include="TrackDataContainer.cs" />
     <Compile Include="TrafficDataSorter.cs" />
     <Compile Include="TranspondanceDecoder.cs" />

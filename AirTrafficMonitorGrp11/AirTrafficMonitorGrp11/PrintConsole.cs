@@ -20,12 +20,11 @@ namespace AirTrafficMonitorGrp11
 
         }
 
-        private void OnSeparationChecked(object sender, List<TrackDataContainer> e)
+        private void OnSeparationChecked(object sender, List<SeperationContainer> e)
         {
             foreach (var data in e)
             {
-                Console.WriteLine("Time of occurance: " + data.Timestamp + "Tag of the involved track: "+ data.Tag );
-                // ikke færdig endnu.
+                Console.WriteLine("Time of occurance: " + data.TimeStamp + ":" + data.TimeStamp.Millisecond + "\nInvolved tracks: "+ data.TrackTag1 + " and " + data.TrackTag2 + "\n" );
             }
         }
 
@@ -33,7 +32,7 @@ namespace AirTrafficMonitorGrp11
         {
             foreach (var data in e)
             {
-                Console.WriteLine("Tag: " + data.Tag + "\nCurrent position:  X: " + data.X + " meters, Y: " + data.Y + " meters \nCurrent altitude: " + data.Altitude + " meters \nCurrent horizontal velocity: " + data.Velocity + " m/s \nCurrent compass course: " + data.Course + "degrees from north\n" + "Timestamp: " + data.Timestamp.AddMilliseconds(3) + "\n");
+                Console.WriteLine("Tag: " + data.Tag + "\nCurrent position:  X: " + data.X + " meters, Y: " + data.Y + " meters \nCurrent altitude: " + data.Altitude + " meters \nCurrent horizontal velocity: " + data.Velocity + " m/s \nCurrent compass course: " + data.Course + "degrees from north\n" + "Timestamp: " + data.Timestamp + ":" + data.Timestamp.Millisecond + "\n");
             }
         }
 
