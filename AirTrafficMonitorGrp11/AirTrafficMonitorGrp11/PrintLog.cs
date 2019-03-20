@@ -17,15 +17,16 @@ namespace AirTrafficMonitorGrp11
             _seperationChecker.SeperationChecked += OnSeparationChecked;
         }
 
-        private void OnSeparationChecked(object sender, List<TrackDataContainer> e)
+        private void OnSeparationChecked(object sender, List<SeperationContainer> e)
         {
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt"))
             {
                 foreach (var data in e)
                 {
-                    file.WriteLine("Time of occurence: {0} \t Tag of involved tracks: {1}", data.Timestamp, data.Tag);
+                    file.WriteLine("Time of occurance: " + data.TimeStamp + ":" + data.TimeStamp.Millisecond + "\nInvolved tracks: "+ data.TrackTag1 + " and " + data.TrackTag2 + "\n" );
                 }
             }
         }
     }
 }
+ 
