@@ -14,9 +14,10 @@ namespace AirTrafficMonitorGrp11
             X = 0;
             Y = 0;
             Altitude = 0;
-            Timestamp = DateTime.Now;
             Velocity = 0;
             Course = 0;
+            Timestamp = DateTime.MinValue;
+
         }
         public string Tag {get; set; }
         public int X { get; set; }
