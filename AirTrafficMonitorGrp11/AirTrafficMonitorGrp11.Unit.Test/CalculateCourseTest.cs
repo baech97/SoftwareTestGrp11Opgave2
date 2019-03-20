@@ -14,6 +14,15 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         private iCalculateCourse _calculateCourse;
         private iCalculateVelocity _velocity;
         private List<TrackDataContainer> listReceived;
+        private List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
+
+
+
+        private int LastPosition_X;
+        private int LastPosition_Y;
+        private int CurrentPosition_X;
+        private int CurrentPosition_Y;
+
 
         [SetUp]
         public void SetUp()
@@ -26,20 +35,23 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
 
         [Test]
+        public void Course_is_120()
+        {
+           _uut.;
+            
+        }
+
+        [Test]
         public void Course_is_90()
         {
-            List<TrackDataContainer> tdcList = new List <TrackDataContainer>();
-            TrackDataContainer tdc = new TrackDataContainer();
-            tdc.Y = 4000;
-            tdc.X = 2000;
-            
-            
-            
 
-            tdcList.Add(tdc);
-            
-            Assert.That(_uut.OnVelocityCalculated(_velocity, tdcList) Is.EqualTo(45));
-            
+            LastPosition_X = 1000;
+            LastPosition_Y = 1000;
+            CurrentPosition_X = 2000;
+            CurrentPosition_Y = 2000;
+
+            Assert.That(_uut.OnVelocityCalculated() Is.EqualTo(45));
+
         }
 
     }
