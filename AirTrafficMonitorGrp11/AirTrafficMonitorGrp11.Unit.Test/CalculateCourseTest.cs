@@ -13,14 +13,15 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         private CalculateCourse _uut;
         private iCalculateCourse _calculateCourse;
         private iCalculateVelocity _velocity;
+        private List<TrackDataContainer> listReceived;
 
         [SetUp]
         public void SetUp()
         {
             _calculateCourse = NSubstitute.Substitute.For<iCalculateCourse>();
+
             _uut = new CalculateCourse(_velocity);
-
-
+            _uut.CourseCalculated += (o, args) => { listReceived = args; };
         }
 
 
@@ -31,6 +32,9 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             TrackDataContainer tdc = new TrackDataContainer();
             tdc.Y = 4000;
             tdc.X = 2000;
+            
+            
+            
 
             tdcList.Add(tdc);
             
