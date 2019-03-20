@@ -33,7 +33,10 @@ namespace AirTrafficMonitorGrp11
             }
 
 
-            SeperationChecked?.Invoke(this, tdcList);
+            if (tdcList.Count != 0)
+            {
+                SeperationChecked?.Invoke(this, tdcList);
+            }
         }
     }
 }
