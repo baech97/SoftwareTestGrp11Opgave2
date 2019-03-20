@@ -33,8 +33,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _receiver.TransponderDataReady += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
 
-            
-
+            Assert.That(_uut.DataRecivedList, Is.EqualTo(testData));
         }
     }
 }
