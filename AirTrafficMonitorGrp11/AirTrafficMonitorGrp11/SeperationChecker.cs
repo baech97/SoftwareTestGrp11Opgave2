@@ -19,20 +19,24 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataSorted(object sender, List<TrackDataContainer> e)
         {
-            List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
+            List<> seperationList = new List<string>();
 
-
-            // skriv seperation checker-kode herinde
-
-            for (int i = 0; i < UPPER; i++)
+            for (int i = 0; i < e.Count; i++)
             {
-                for (int j = 0; j < UPPER; j++)
+                for (int j = i+1; j < e.Count; j++)
                 {
-                    
+                    if (e[i].Altitude - e[j].Altitude <= 300)
+                    {
+
+
+                        if (e[i].X - e[j].X <= 5000 && e[i].Y - e[j].Y <= 5000)
+                        {
+                            
+                        }
+                    }
                 }
             }
-
-
+            
             if (tdcList.Count != 0)
             {
                 SeperationChecked?.Invoke(this, tdcList);
