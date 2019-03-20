@@ -18,7 +18,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void SetUp()
         {
             _calculateCourse = NSubstitute.Substitute.For<iCalculateCourse>();
-            _uut = new CalculateCourse(_trafficDataSorter);
+            _uut = new CalculateCourse(_velocity);
 
 
         }
@@ -27,11 +27,14 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         [Test]
         public void Course_is_90()
         {
+            List<TrackDataContainer> tdcList = new List <TrackDataContainer>();
             TrackDataContainer tdc = new TrackDataContainer();
-            tdc.X = 2000;
             tdc.Y = 4000;
+            tdc.X = 2000;
+
+            tdcList.Add(tdc);
             
-            Assert.That(_uut.OnVelocityCalculated(this,tdc) Is.EqualTo(45));
+            Assert.That(_uut.OnVelocityCalculated(_velocity, tdcList) Is.EqualTo(45));
             
         }
 
