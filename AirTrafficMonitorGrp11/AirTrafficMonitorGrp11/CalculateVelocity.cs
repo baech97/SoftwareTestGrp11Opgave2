@@ -16,8 +16,8 @@ namespace AirTrafficMonitorGrp11
         private int LastPosition_Y;
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
-        private DateTime LastTime = DateTime.Now;
-        private DateTime CurrentTime = DateTime.Now;
+        private DateTime LastTime;
+        private DateTime CurrentTime;
         private double timediff;
         private double Velocity;
 
@@ -36,15 +36,13 @@ namespace AirTrafficMonitorGrp11
                 CurrentPosition_Y = data.Y;
                 CurrentTime = data.Timestamp;
 
-                if (LastTime != null)
-                {
-                    TimeSpan ts = CurrentTime - LastTime;
-                    timediff = ts.Milliseconds;
+                TimeSpan ts = CurrentTime - LastTime;
+                timediff = ts.Milliseconds;
 
-                    Velocity = timediff * (Math.Sqrt((CurrentPosition_X - LastPosition_X) ^ 2) + ((CurrentPosition_Y - LastPosition_Y) ^ 2));
-                    data.Velocity = Velocity;
-                    tdcList.Add(data);
-                }
+                Velocity = timediff * (Math.Sqrt((CurrentPosition_X - LastPosition_X) ^ 2) + ((CurrentPosition_Y - LastPosition_Y) ^ 2));
+                data.Velocity = Velocity;
+                tdcList.Add(data);
+
 
                 LastPosition_X = data.X;
                 LastPosition_Y = data.Y;
