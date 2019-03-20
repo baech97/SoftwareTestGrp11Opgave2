@@ -25,7 +25,10 @@ namespace AirTrafficMonitorGrp11
             // skriv seperation checker-kode herinde
 
 
-            SeperationChecked?.Invoke(this, tdcList);
+            if (tdcList.Count != 0)
+            {
+                SeperationChecked?.Invoke(this, tdcList);
+            }
         }
     }
 }
