@@ -19,7 +19,7 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataSorted(object sender, List<TrackDataContainer> e)
         {
-            List<> seperationList = new List<string>();
+            List<string> seperationList = new List<string>();
 
             for (int i = 0; i < e.Count; i++)
             {
@@ -37,9 +37,9 @@ namespace AirTrafficMonitorGrp11
                 }
             }
             
-            if (tdcList.Count != 0)
+            if (seperationList.Count != 0)
             {
-                SeperationChecked?.Invoke(this, tdcList);
+                //SeperationChecked?.Invoke(this, seperationList);
             }
         }
     }
