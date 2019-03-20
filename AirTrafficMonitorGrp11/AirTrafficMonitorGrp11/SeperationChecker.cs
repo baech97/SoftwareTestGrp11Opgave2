@@ -24,6 +24,14 @@ namespace AirTrafficMonitorGrp11
 
             // skriv seperation checker-kode herinde
 
+            for (int i = 0; i < UPPER; i++)
+            {
+                for (int j = 0; j < UPPER; j++)
+                {
+                    
+                }
+            }
+
 
             if (tdcList.Count != 0)
             {
