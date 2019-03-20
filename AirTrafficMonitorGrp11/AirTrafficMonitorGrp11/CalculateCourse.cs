@@ -19,13 +19,13 @@ namespace AirTrafficMonitorGrp11
 
         //
         private List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
-        private List<TrackDataContainer> CurrentFlightData = new List<TrackDataContainer>();
+        private List<TrackDataContainer> CurrentFlightData;
 
         public CalculateCourse(iCalculateVelocity calculateVelocity)
         {
             _calculateVelocity = calculateVelocity;
             _calculateVelocity.VelocityCalculated += OnVelocityCalculated;
-            LastFlightData = new List<TrackDataContainer>();
+            
         }
 
         //event
