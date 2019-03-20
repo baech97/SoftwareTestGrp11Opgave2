@@ -12,6 +12,7 @@ namespace AirTrafficMonitorGrp11
     {
         private ITransponderReceiver _transponderReceiver;
         public event EventHandler<List<TrackDataContainer>> DataDecoded;
+        public List<string> DataRecivedList { get; set; }
 
 
         public TranspondanceDecoder(ITransponderReceiver transponderReceiver)
@@ -22,7 +23,7 @@ namespace AirTrafficMonitorGrp11
 
         public void OnTransponderDataReady(object sender, RawTransponderDataEventArgs e)
         {
-
+            DataRecivedList = e.TransponderData;
 
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
 
