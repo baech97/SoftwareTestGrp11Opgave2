@@ -29,7 +29,13 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void Is_Event_raised()
         {
             List<string> testdata = new List<string>();
-            _uut.OnDataSorted(_recievedEvents);
+            //testdata.Add();
+            testdata.Add("BCD123;10005;85890;12000;20151006213456789");
+            testdata.Add("XYZ987;25059;75654;4000;20151006213456789");
+
+            //_dataSorter
+
+
         }
     }
 }

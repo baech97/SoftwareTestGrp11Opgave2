@@ -41,8 +41,7 @@ namespace AirTrafficMonitorGrp11
                     TimeSpan ts = CurrentTime - LastTime;
                     timediff = ts.Milliseconds;
 
-                    Velocity = timediff * (((CurrentPosition_X - LastPosition_X) ^ 2) +
-                                           ((CurrentPosition_Y - LastPosition_Y) ^ 2));
+                    Velocity = timediff * (Math.Sqrt((CurrentPosition_X - LastPosition_X) ^ 2) + ((CurrentPosition_Y - LastPosition_Y) ^ 2));
                     data.Velocity = Velocity;
                     tdcList.Add(data);
                 }
