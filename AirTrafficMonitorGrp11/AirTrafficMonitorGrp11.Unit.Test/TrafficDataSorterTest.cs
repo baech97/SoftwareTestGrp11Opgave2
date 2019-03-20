@@ -25,7 +25,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             _uut.DataSorted += (o, args) => { listReceived = args; };
         }
 
-        [Test]
+        
 
     }
 }
