@@ -16,6 +16,7 @@ namespace AirTrafficMonitorGrp11
         private int LastPosition_Y;
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
+        private double Course;
 
         //
         private List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
@@ -70,26 +71,25 @@ namespace AirTrafficMonitorGrp11
                     {
                         if (CurrentPosition_Y > LastPosition_Y)
                         {
-                            var Course = 0;
+                            Course = 0;
                         }
                         else if (LastPosition_Y > CurrentPosition_Y)
                         {
-                            var Course = 180;
+                            Course = 180;
                         }
                     }
                     
                     if (dX > 0)
                     {
-                        var Course = 90 - Math.Atan(dY / dX) * (180 / Math.PI);
+                        Course = 90 - Math.Atan(dY / dX) * (180 / Math.PI);
                     }
                         
                     else if (dX < 0) 
                     {
-                        var Course = 270 - Math.Atan(dY / dX) * (180 / Math.PI);
+                        Course = 270 - Math.Atan(dY / dX) * (180 / Math.PI);
                     }
                     
 
-                    Course = Convert.ToInt32(Course);
                     lastFlight.Course = Convert.ToInt32(Course);
 
                     list.Add(lastFlight);
