@@ -8,6 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     public interface iCalculateVelocity
     {
-        event EventHandler<List<TrackDataContainer>> VelocityCalculated;
+        event EventHandler<ATMEvent> VelocityCalculated;
     }
 }

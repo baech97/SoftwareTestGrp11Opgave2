@@ -8,6 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     public interface iTranspondanceDecoder
     {
-        event EventHandler <List<TrackDataContainer>> DataDecoded;
+        event EventHandler <ATMEvent> DataDecoded;
     }
 }

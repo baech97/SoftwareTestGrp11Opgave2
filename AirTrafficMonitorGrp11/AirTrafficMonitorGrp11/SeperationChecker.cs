@@ -8,8 +8,9 @@ namespace AirTrafficMonitorGrp11
 {
     public class SeperationChecker : iSeperationChecker
     {
-        public event EventHandler<List<SeperationContainer>> SeperationChecked;
+        public event EventHandler<SeperationEvent> SeperationChecked;
         public iTrafficDataSorter _dataSorter;
+        public List<TrackDataContainer> DataRecivedList { get; set; }
 
         public SeperationChecker(iTrafficDataSorter dataSorter)
         {
@@ -17,18 +18,19 @@ namespace AirTrafficMonitorGrp11
             _dataSorter.DataSorted += OnDataSorted;
         }
 
-        public void OnDataSorted(object sender, List<TrackDataContainer> e)
+        public void OnDataSorted(object sender, ATMEvent e)
         {
             List<SeperationContainer> seperationList = new List<SeperationContainer>();
+            DataRecivedList = e._tdcList;
 
-            for (int i = 0; i < e.Count; i++)
+            for (int i = 0; i < DataRecivedList.Count; i++)
             {
-                for (int j = i+1; j < e.Count; j++)
+                for (int j = i+1; j < DataRecivedList.Count; j++)
                 {
-                    var dX = Math.Abs(e[i].X - e[j].X);
-                    var dY = Math.Abs( e[i].Y - e[j].Y);
+                    var dX = Math.Abs(DataRecivedList[i].X - DataRecivedList[j].X);
+                    var dY = Math.Abs( DataRecivedList[i].Y - DataRecivedList[j].Y);
                     var d = Math.Sqrt(Math.Pow(dX, 2) + Math.Pow(dY, 2));
-                    var dA = Math.Abs(e[i].Altitude - e[j].Altitude);
+                    var dA = Math.Abs(DataRecivedList[i].Altitude - DataRecivedList[j].Altitude);
 
                     if (dA < 30000)
                     {
@@ -37,19 +39,20 @@ namespace AirTrafficMonitorGrp11
                             if (d < 50000)
                             {
                                 SeperationContainer sc = new SeperationContainer();
-                                sc.TrackTag1 = e[i].Tag;
-                                sc.TrackTag2 = e[j].Tag;
-                                sc.TimeStamp = e[i].Timestamp;
+                                sc.TrackTag1 = DataRecivedList[i].Tag;
+                                sc.TrackTag2 = DataRecivedList[j].Tag;
+                                sc.TimeStamp = DataRecivedList[i].Timestamp;
                                 seperationList.Add(sc);
                             }
                         }
                     }
                 }
             }
-            
+
             if (seperationList.Count != 0)
             {
-                SeperationChecked?.Invoke(this, seperationList);
+                SeperationEvent seperationEvent = new SeperationEvent(seperationList);
+                SeperationChecked?.Invoke(this, seperationEvent);
             }
         }
     }

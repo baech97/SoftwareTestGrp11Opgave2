@@ -11,7 +11,7 @@ namespace AirTrafficMonitorGrp11
     public class TranspondanceDecoder : iTranspondanceDecoder
     {
         private ITransponderReceiver _transponderReceiver;
-        public event EventHandler<List<TrackDataContainer>> DataDecoded;
+        public event EventHandler<ATMEvent> DataDecoded;
         public List<string> DataRecivedList { get; set; }
 
 
@@ -45,7 +45,8 @@ namespace AirTrafficMonitorGrp11
 
             if (tdcList.Count != 0)
             {
-                DataDecoded?.Invoke(this, tdcList);
+                ATMEvent atmEvent = new ATMEvent(tdcList);
+                DataDecoded?.Invoke(this, atmEvent);
             }
         }
     }

@@ -10,7 +10,7 @@ namespace AirTrafficMonitorGrp11
     public class CalculateVelocity : iCalculateVelocity
     {
         private iTrafficDataSorter _dataSorter;
-        public event EventHandler<List<TrackDataContainer>> VelocityCalculated;
+        public event EventHandler<ATMEvent> VelocityCalculated;
 
         private int LastPosition_X;
         private int LastPosition_Y;
@@ -33,11 +33,11 @@ namespace AirTrafficMonitorGrp11
             
         }
 
-        public void OnDataSorted(object sender, List<TrackDataContainer> e)
+        public void OnDataSorted(object sender, ATMEvent e)
         {
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
             CurrentFlightData = new List<TrackDataContainer>();
-            CurrentFlightData = e;
+            CurrentFlightData = e._tdcList;
 
 
             foreach (var flight in CurrentFlightData)
@@ -49,12 +49,9 @@ namespace AirTrafficMonitorGrp11
 
             if (LastFlightData.Count !=0)
             {
-                VelocityCalculated?.Invoke(this,tdcList);
+                ATMEvent atmEvent = new ATMEvent(tdcList);
+                VelocityCalculated?.Invoke(this, atmEvent);
             }
-
-            
-
-
         }
 
         public List<TrackDataContainer> Calculate(TrackDataContainer currentFligts)

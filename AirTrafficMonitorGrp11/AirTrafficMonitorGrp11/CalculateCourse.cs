@@ -10,7 +10,7 @@ namespace AirTrafficMonitorGrp11
     public class CalculateCourse : iCalculateCourse
     {
         private iCalculateVelocity _calculateVelocity;
-        public event EventHandler<List<TrackDataContainer>> CourseCalculated;
+        public event EventHandler<ATMEvent> CourseCalculated;
 
         private int LastPosition_X;
         private int LastPosition_Y;
@@ -30,11 +30,11 @@ namespace AirTrafficMonitorGrp11
 
         //event
 
-        public void OnVelocityCalculated(object sender, List<TrackDataContainer> e)
+        public void OnVelocityCalculated(object sender, ATMEvent e)
         {
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
             CurrentFlightData = new List<TrackDataContainer>();
-            CurrentFlightData = e;
+            CurrentFlightData = e._tdcList;
             
             foreach (var flight in CurrentFlightData)
             {
@@ -45,7 +45,8 @@ namespace AirTrafficMonitorGrp11
 
             if (LastFlightData.Count != 0)
             {
-                CourseCalculated?.Invoke(this, tdcList);
+                ATMEvent atmEvent = new ATMEvent(tdcList);
+                CourseCalculated?.Invoke(this, atmEvent);
             }
         }
 

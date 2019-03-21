@@ -10,6 +10,9 @@ namespace AirTrafficMonitorGrp11
     public class PrintLog : iPrintLog
     {
         public iSeperationChecker _seperationChecker;
+        private List<SeperationContainer> seperationList = new List<SeperationContainer>();
+        public List<SeperationContainer> DataRecivedList { get; set; }
+
 
         public PrintLog(iSeperationChecker seperationChecker)
         {
@@ -17,16 +20,21 @@ namespace AirTrafficMonitorGrp11
             _seperationChecker.SeperationChecked += OnSeparationChecked;
         }
 
-        private void OnSeparationChecked(object sender, List<SeperationContainer> e)
+        private void OnSeparationChecked(object sender, SeperationEvent e)
         {
+            DataRecivedList = e._SeperationList;
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt"))
             {
-                foreach (var data in e)
+                foreach (var data in DataRecivedList)
                 {
-                    file.WriteLine("Time of occurance: " + data.TimeStamp + ":" + data.TimeStamp.Millisecond + "\nInvolved tracks: "+ data.TrackTag1 + " and " + data.TrackTag2 + "\n" );
+                    //if ()
+                    //{
+
+                    //}
+                    file.WriteLine("Time of occurance: " + data.TimeStamp + ":" + data.TimeStamp.Millisecond + "\nInvolved tracks: " + data.TrackTag1 + " and " + data.TrackTag2 + "\n");
+                    seperationList.Add(data);
                 }
             }
         }
     }
 }
- 

@@ -10,7 +10,7 @@ namespace AirTrafficMonitorGrp11
     public class TrafficDataSorter : iTrafficDataSorter
     {
         private iTranspondanceDecoder _decoder;
-        public event EventHandler<List<TrackDataContainer>> DataSorted;
+        public event EventHandler<ATMEvent> DataSorted;
         public List<TrackDataContainer> DataRecivedList { get; set; }
 
         public TrafficDataSorter(iTranspondanceDecoder decoder)
@@ -20,12 +20,12 @@ namespace AirTrafficMonitorGrp11
         }
 
 
-        public void OnDataDecoded(object sender, List<TrackDataContainer> e)
+        public void OnDataDecoded(object sender, ATMEvent e)
         {
-                DataRecivedList = e;
+                DataRecivedList = e._tdcList;
                 
                 List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
-                foreach (var data in e)
+                foreach (var data in e._tdcList)
                 {
                     if (data.X > 10000 && data.X < 90000)
                     {
@@ -41,7 +41,8 @@ namespace AirTrafficMonitorGrp11
 
             if (tdcList.Count != 0)
             {
-                DataSorted?.Invoke(this, tdcList);
+                ATMEvent atmEvent = new ATMEvent(tdcList);
+                DataSorted?.Invoke(this, atmEvent);
             }
                      
         }

@@ -8,6 +8,6 @@ namespace AirTrafficMonitorGrp11
 {
     public interface iCalculateCourse
     {
-        event EventHandler<List<TrackDataContainer>> CourseCalculated;
+        event EventHandler<ATMEvent> CourseCalculated;
     }
 }
