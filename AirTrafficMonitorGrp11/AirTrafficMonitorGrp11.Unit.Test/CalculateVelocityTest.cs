@@ -1,41 +1,65 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using NUnit.Framework;
-//using NSubstitute;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NUnit.Framework;
+using NSubstitute;
+using TransponderReceiver;
 
-//namespace AirTrafficMonitorGrp11.Unit.Test
-//{
-//    [TestFixture]
-//    public class CalculateVelocityTest
-//    {
+namespace AirTrafficMonitorGrp11.Unit.Test
+{
+    [TestFixture]
+    public class CalculateVelocityTest
+    {
 
-//        private iTrafficDataSorter _dataSorter;
-//        private CalculateVelocity _uut;
-//        private List<TrackDataContainer> _recievedEvents;
-//        [SetUp]
-//        public void SetUp()
-//        {
-//            _dataSorter = NSubstitute.Substitute.For<iTrafficDataSorter>();
-//            _uut = new CalculateVelocity(_dataSorter);
-//            _uut.VelocityCalculated += (o, args) => { _recievedEvents = args; };
-//            _recievedEvents = null;
+        private iTrafficDataSorter _dataSorter;
+        private CalculateVelocity _uut;
 
-//        }
+        [SetUp]
+        public void SetUp()
+        {
+            _dataSorter = NSubstitute.Substitute.For<iTrafficDataSorter>();
+            _uut = new CalculateVelocity(_dataSorter);
+        }
 
-//        [Test]
-//        public void Is_Event_raised()
-//        {
-//            List<string> testdata = new List<string>();
-//            //testdata.Add();
-//            testdata.Add("BCD123;10005;85890;12000;20151006213456789");
-//            testdata.Add("XYZ987;25059;75654;4000;20151006213456789");
+        [TestCase(20000, 30000)]
+        public void TestReception(int s1, int s2)
+        {
+            List<TrackDataContainer> CurrentFlight = new List<TrackDataContainer>();
+            List<TrackDataContainer> LastFlight = new List<TrackDataContainer>();
 
-//            //_dataSorter
+            TrackDataContainer container1 = new TrackDataContainer();
+            TrackDataContainer container2 = new TrackDataContainer();
+
+            container1.Tag = "ATR423";
+            container2.Tag = "ATR423";
+
+            container1.X = s1;
+            container2.X = s2;
+
+            container1.Y = s1;
+            container2.Y = s2;
+
+            container1.Altitude = 10000;
+            container2.Altitude = 10000;
+
+            // Ændre datetime tidspunkterne
+            container1.Timestamp = DateTime.Now;
+            container2.Timestamp = DateTime.Today;
+
+            //Beregn
+            CurrentFlight.Add(container1);
+            LastFlight.Add(container2);
+            _uut.Calculate(CurrentFlight);
 
 
-//        }
-//    }
-//}
+
+            Assert.That(_uut.Calculate());
+
+            _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(dataList));
+
+            Assert.That(_uut.VelocityCalculated, Is.EqualTo(dataList));
+        }
+    }
+}
