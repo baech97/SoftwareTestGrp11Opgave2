@@ -11,6 +11,7 @@ namespace AirTrafficMonitorGrp11
     {
         private iTranspondanceDecoder _decoder;
         public event EventHandler<List<TrackDataContainer>> DataSorted;
+        public List<TrackDataContainer> DataRecivedList { get; set; }
 
         public TrafficDataSorter(iTranspondanceDecoder decoder)
         {
@@ -21,8 +22,8 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataDecoded(object sender, List<TrackDataContainer> e)
         {
-            
-            
+                DataRecivedList = e;
+                
                 List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
                 foreach (var data in e)
                 {
