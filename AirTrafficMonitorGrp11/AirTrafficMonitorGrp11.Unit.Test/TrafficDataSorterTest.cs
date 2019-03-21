@@ -27,8 +27,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void TestReception()
         {
             List<TrackDataContainer> dataList = new List<TrackDataContainer>();
-
-
+            
             TrackDataContainer container = new TrackDataContainer();
             container.Tag = "ATR423";
             container.X = 20000;
