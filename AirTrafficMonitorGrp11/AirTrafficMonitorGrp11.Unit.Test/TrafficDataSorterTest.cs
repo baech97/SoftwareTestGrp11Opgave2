@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit;
 using NSubstitute;
 using NUnit.Framework;
+using TransponderReceiver;
 
 namespace AirTrafficMonitorGrp11.Unit.Test
 {
@@ -14,32 +15,34 @@ namespace AirTrafficMonitorGrp11.Unit.Test
     {
         private iTranspondanceDecoder _decoder;
         private TrafficDataSorter _uut;
-        private List<TrackDataContainer> listReceived;
+        //private List<TrackDataContainer> DataRecivedList;
 
 
         [SetUp]
         public void SetUp()
         {
             _decoder = NSubstitute.Substitute.For<iTranspondanceDecoder>();
-
             _uut = new TrafficDataSorter(_decoder);
-            _uut.DataSorted += (o, args) => { listReceived = args; };
 
-
+            //_uut.DataSorted += (o, args) => { DataRecivedList = args; };
         }
 
         [Test]
-        public void Track_in_airspace()
+        public void TestReception()
         {
+            TrackDataContainer dataList = new TrackDataContainer();
+            dataList.Tag = "ATR423";
+            dataList.X = 20000;
+            dataList.Y = 30000;
+            dataList.Altitude = 10000;
+            dataList.Timestamp = DateTime.Now;
 
-            TrackDataContainer tdc1 = new TrackDataContainer();
-            tdc1.X = 20000;
-            tdc1.Y = 30000;
-            tdc1.Altitude = 10000;
+            //DataRecivedList.Add(dataList);
 
-            //_decoder.DataDecoded += Raise.EventWith(this, new listReceived(tdc1));
+            _decoder.DataDecoded += Raise.EventWith(this, new List<TrackDataContainer>(dataList));
+            _decoder.DataDecoded += Raise.EventWith(this, new TrackDataContainer(dataList));
 
-            //Assert.That(_uut.OnDataDecoded());
+            Assert.That(_uut.DataRecivedList, Is.EqualTo(dataList));
         }
 
     }
