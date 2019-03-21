@@ -16,16 +16,17 @@ namespace AirTrafficMonitorGrp11
         private int LastPosition_Y;
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
-        private double Course;
+        public double Course { get; set; }
 
         //
-        private List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
+        public List<TrackDataContainer> LastFlightData { get; set; }
         private List<TrackDataContainer> CurrentFlightData;
 
         public CalculateCourse(iCalculateVelocity calculateVelocity)
         {
             _calculateVelocity = calculateVelocity;
             _calculateVelocity.VelocityCalculated += OnVelocityCalculated;
+            LastFlightData = new List<TrackDataContainer>();
             
         }
 

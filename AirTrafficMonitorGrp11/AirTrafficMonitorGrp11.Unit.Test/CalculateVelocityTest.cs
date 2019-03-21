@@ -11,7 +11,7 @@
 //    [TestFixture]
 //    public class CalculateVelocityTest
 //    {
-        
+
 //        private iTrafficDataSorter _dataSorter;
 //        private CalculateVelocity _uut;
 //        private List<TrackDataContainer> _recievedEvents;
