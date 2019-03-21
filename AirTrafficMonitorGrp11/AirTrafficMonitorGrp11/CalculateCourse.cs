@@ -17,40 +17,41 @@ namespace AirTrafficMonitorGrp11
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
 
-        private double Course;
         //
         private List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
-        private List<TrackDataContainer> CurrentFlightData = new List<TrackDataContainer>();  
+        private List<TrackDataContainer> CurrentFlightData;
 
-        public CalculateCourse(iCalculateVelocity calculateVelocity) 
+        public CalculateCourse(iCalculateVelocity calculateVelocity)
         {
             _calculateVelocity = calculateVelocity;
-            _calculateVelocity.VelocityCalculated += Calculate;
-            LastFlightData = new List<TrackDataContainer>();
+            _calculateVelocity.VelocityCalculated += OnVelocityCalculated;
+            
         }
 
         //event
 
-        public void Calculate(object sender, List<TrackDataContainer> e)
+        public void OnVelocityCalculated(object sender, List<TrackDataContainer> e)
         {
+            List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
             CurrentFlightData = new List<TrackDataContainer>();
             CurrentFlightData = e;
-
-
+            
             foreach (var flight in CurrentFlightData)
             {
-                OnVelocityCalculated(flight);
+                tdcList = Calculate(flight);
             }
 
             LastFlightData = CurrentFlightData;
 
-            //CurrentFlightData.Add(data);
-
+            if (LastFlightData.Count != 0)
+            {
+                CourseCalculated?.Invoke(this, tdcList);
+            }
         }
 
-        public void OnVelocityCalculated(TrackDataContainer currentFlights)   
+        public List<TrackDataContainer> Calculate(TrackDataContainer currentFlights)
         {
-            List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
+            List<TrackDataContainer> list = new List<TrackDataContainer>();
             foreach (var lastFlight in LastFlightData)
             {
                 if (lastFlight.Tag == currentFlights.Tag)
@@ -61,15 +62,25 @@ namespace AirTrafficMonitorGrp11
                     CurrentPosition_Y = currentFlights.Y;
 
                     //udregning
-                    Course = 90 - Math.Atan((CurrentPosition_Y - LastPosition_Y) / (CurrentPosition_X - LastPosition_X)) * (180 * Math.PI);
+                    var dX = CurrentPosition_X - LastPosition_X;
+                    var dY = CurrentPosition_Y - LastPosition_Y;
+
+                    if (dX == 0)
+                    {
+                        dX = 1;
+                    }
+                    var Course = 90 - Math.Atan(dY / dX) * (180 * Math.PI);
 
                     Course = Convert.ToInt32(Course);
 
-                    CourseCalculated?.Invoke(this, tdcList);
+                    lastFlight.Course = Convert.ToInt32(Course);
+
+                    list.Add(lastFlight);
 
 
                 }
             }
+            return list;
         }
 
         //
