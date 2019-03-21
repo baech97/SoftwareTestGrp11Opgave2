@@ -19,10 +19,10 @@ namespace AirTrafficMonitorGrp11
         private DateTime LastTime;
         private DateTime CurrentTime;
         private double timediff;
-        private double Velocity;
+        public double Velocity { get; set; }
 
 
-        private List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
+        public List<TrackDataContainer> LastFlightData { get; set; }
         private List<TrackDataContainer> CurrentFlightData;
 
 
@@ -30,7 +30,7 @@ namespace AirTrafficMonitorGrp11
         {
             _dataSorter = dataSorter;
             _dataSorter.DataSorted += OnDataSorted;
-            
+            LastFlightData = new List<TrackDataContainer>();
         }
 
         public void OnDataSorted(object sender, ATMEvent e)
@@ -40,10 +40,9 @@ namespace AirTrafficMonitorGrp11
             CurrentFlightData = e._tdcList;
 
 
-            foreach (var flight in CurrentFlightData)
-            {
-                tdcList = Calculate(flight);
-            }
+            
+            tdcList = Calculate(CurrentFlightData);
+            
 
             LastFlightData = CurrentFlightData;
 
@@ -54,36 +53,38 @@ namespace AirTrafficMonitorGrp11
             }
         }
 
-        public List<TrackDataContainer> Calculate(TrackDataContainer currentFligts)
+        public List<TrackDataContainer> Calculate(List<TrackDataContainer> currentFlights)
         {
             List<TrackDataContainer> list = new List<TrackDataContainer>();
             foreach (var LastFlight in LastFlightData)
             {
-                if (LastFlight.Tag == currentFligts.Tag)
+                foreach (var currentFlight in currentFlights)
                 {
-                    LastPosition_X = LastFlight.X;
-                    LastPosition_Y = LastFlight.Y;
-                    LastTime = LastFlight.Timestamp;
+                    if (LastFlight.Tag == currentFlight.Tag)
+                    {
+                        LastPosition_X = LastFlight.X;
+                        LastPosition_Y = LastFlight.Y;
+                        LastTime = LastFlight.Timestamp;
 
-                    CurrentPosition_X = currentFligts.X;
-                    CurrentPosition_Y = currentFligts.Y;
-                    CurrentTime = currentFligts.Timestamp;
-
-
-                    
-
-                    TimeSpan ts = CurrentTime - LastTime;
-                    timediff = ts.TotalMilliseconds;
-                    
-                    Velocity =  (Math.Sqrt(Math.Pow(CurrentPosition_X - LastPosition_X, 2) + Math.Pow(CurrentPosition_Y - LastPosition_Y, 2))/ timediff)*1000;
-
-                    Velocity = Convert.ToInt32(Velocity);
-
-                    LastFlight.Velocity = Convert.ToInt32(Velocity);
-
-                    list.Add(LastFlight);
+                        CurrentPosition_X = currentFlight.X;
+                        CurrentPosition_Y = currentFlight.Y;
+                        CurrentTime = currentFlight.Timestamp;
 
 
+
+
+                        TimeSpan ts = CurrentTime - LastTime;
+                        timediff = ts.TotalMilliseconds;
+
+                        Velocity = (Math.Sqrt(Math.Pow(CurrentPosition_X - LastPosition_X, 2) + Math.Pow(CurrentPosition_Y - LastPosition_Y, 2)) / timediff) * 1000;
+
+                        LastFlight.Velocity = Convert.ToInt32(Velocity);
+
+                        list.Add(LastFlight);
+
+
+
+                    }
 
                 }
             }
