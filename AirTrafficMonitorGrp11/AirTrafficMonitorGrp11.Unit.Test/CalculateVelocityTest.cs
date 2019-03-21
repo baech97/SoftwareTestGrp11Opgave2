@@ -54,5 +54,12 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             Assert.That(_uut.Velocity, Is.EqualTo(10000));
         }
+
+        [Test]
+        public void Test_get_velocity()
+        {
+            _uut.Velocity = 100;
+            Assert.AreEqual(_uut.Velocity,100);
+        }
     }
 }
