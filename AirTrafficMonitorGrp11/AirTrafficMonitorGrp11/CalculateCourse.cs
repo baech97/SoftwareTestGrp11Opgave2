@@ -16,7 +16,7 @@ namespace AirTrafficMonitorGrp11
         private int LastPosition_Y;
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
-        public double Course { private get; set; }
+        public double Course { get; set; }
 
         //
         public List<TrackDataContainer> LastFlightData { get; set; }

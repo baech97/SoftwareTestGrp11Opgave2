@@ -19,7 +19,7 @@ namespace AirTrafficMonitorGrp11
         private DateTime LastTime;
         private DateTime CurrentTime;
         private double timediff;
-        public double Velocity { private get; set; }
+        public double Velocity { get; set; }
 
 
         public List<TrackDataContainer> LastFlightData { get; set; }
