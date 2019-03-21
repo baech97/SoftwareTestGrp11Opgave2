@@ -24,7 +24,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         }
 
         [Test]
-        public void Velocity_is_300()
+        public void Velocity_is_1000()
         {
             List<TrackDataContainer> CurrentFlight = new List<TrackDataContainer>();
             List<TrackDataContainer> LastFlight = new List<TrackDataContainer>();
@@ -35,11 +35,11 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container1.Tag = "ATR423";
             container2.Tag = "ATR423";
 
-            container1.X = 20000;
-            container2.X = 20000;
+            container1.X = 2000;
+            container2.X = 2000;
 
-            container1.Y = 20000;
-            container2.Y = 30000;
+            container1.Y = 2000;
+            container2.Y = 3000;
 
             container1.Timestamp = new DateTime(2000,10,10,10,10,1);
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
@@ -52,14 +52,103 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
 
-            Assert.That(_uut.Velocity, Is.EqualTo(10000));
+            Assert.That(_uut.Velocity, Is.EqualTo(1000));
         }
 
         [Test]
-        public void Test_get_velocity()
+        public void Velocity_is_5000()
         {
-            _uut.Velocity = 100;
-            Assert.AreEqual(_uut.Velocity,100);
+            List<TrackDataContainer> CurrentFlight = new List<TrackDataContainer>();
+            List<TrackDataContainer> LastFlight = new List<TrackDataContainer>();
+
+            TrackDataContainer container1 = new TrackDataContainer();
+            TrackDataContainer container2 = new TrackDataContainer();
+
+            container1.Tag = "ATR423";
+            container2.Tag = "ATR423";
+
+            container1.X = 1000;
+            container2.X = 5000;
+
+            container1.Y = 1000;
+            container2.Y = 4000;
+
+            container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
+            container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
+
+            //Beregn
+            LastFlight.Add(container1);
+            CurrentFlight.Add(container2);
+
+            _uut.LastFlightData = LastFlight;
+
+            _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
+
+            Assert.That(_uut.Velocity, Is.EqualTo(5000));
+        }
+
+        [Test]
+        public void Velocity_reverse_direction_is_5000()
+        {
+            List<TrackDataContainer> CurrentFlight = new List<TrackDataContainer>();
+            List<TrackDataContainer> LastFlight = new List<TrackDataContainer>();
+
+            TrackDataContainer container1 = new TrackDataContainer();
+            TrackDataContainer container2 = new TrackDataContainer();
+
+            container1.Tag = "ATR423";
+            container2.Tag = "ATR423";
+
+            container1.X = 4000;
+            container2.X = 1000;
+
+            container1.Y = 5000;
+            container2.Y = 1000;
+
+            container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
+            container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
+
+            //Beregn
+            LastFlight.Add(container1);
+            CurrentFlight.Add(container2);
+
+            _uut.LastFlightData = LastFlight;
+
+            _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
+
+            Assert.That(_uut.Velocity, Is.EqualTo(5000));
+        }
+
+        [Test]
+        public void Velocity_is_0()
+        {
+            List<TrackDataContainer> CurrentFlight = new List<TrackDataContainer>();
+            List<TrackDataContainer> LastFlight = new List<TrackDataContainer>();
+
+            TrackDataContainer container1 = new TrackDataContainer();
+            TrackDataContainer container2 = new TrackDataContainer();
+
+            container1.Tag = "ATR423";
+            container2.Tag = "ATR423";
+
+            container1.X = 1000;
+            container2.X = 1000;
+
+            container1.Y = 1000;
+            container2.Y = 1000;
+
+            container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
+            container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
+
+            //Beregn
+            LastFlight.Add(container1);
+            CurrentFlight.Add(container2);
+
+            _uut.LastFlightData = LastFlight;
+
+            _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
+
+            Assert.That(_uut.Velocity, Is.EqualTo(0));
         }
     }
 }
