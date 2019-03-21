@@ -15,35 +15,32 @@ namespace AirTrafficMonitorGrp11.Unit.Test
     {
         private iTranspondanceDecoder _decoder;
         private TrafficDataSorter _uut;
-        //private List<TrackDataContainer> DataRecivedList;
-
 
         [SetUp]
         public void SetUp()
         {
             _decoder = NSubstitute.Substitute.For<iTranspondanceDecoder>();
             _uut = new TrafficDataSorter(_decoder);
-
-            //_uut.DataSorted += (o, args) => { DataRecivedList = args; };
         }
 
         [Test]
         public void TestReception()
         {
-            TrackDataContainer dataList = new TrackDataContainer();
-            dataList.Tag = "ATR423";
-            dataList.X = 20000;
-            dataList.Y = 30000;
-            dataList.Altitude = 10000;
-            dataList.Timestamp = DateTime.Now;
+            List<TrackDataContainer> dataList = new List<TrackDataContainer>();
 
-            //DataRecivedList.Add(dataList);
 
-            _decoder.DataDecoded += Raise.EventWith(this, new List<TrackDataContainer>(dataList));
-            _decoder.DataDecoded += Raise.EventWith(this, new TrackDataContainer(dataList));
+            TrackDataContainer container = new TrackDataContainer();
+            container.Tag = "ATR423";
+            container.X = 20000;
+            container.Y = 30000;
+            container.Altitude = 10000;
+            container.Timestamp = DateTime.Now;
+
+            dataList.Add(container);
+
+            _decoder.DataDecoded += Raise.EventWith(this, new ATMEvent(dataList));
 
             Assert.That(_uut.DataRecivedList, Is.EqualTo(dataList));
         }
-
     }
 }
