@@ -37,10 +37,9 @@ namespace AirTrafficMonitorGrp11
             CurrentFlightData = new List<TrackDataContainer>();
             CurrentFlightData = e._tdcList;
             
-            foreach (var flight in CurrentFlightData)
-            {
-                tdcList = Calculate(flight);
-            }
+          
+                tdcList = Calculate(CurrentFlightData);
+            
 
             LastFlightData = CurrentFlightData;
 
@@ -51,49 +50,52 @@ namespace AirTrafficMonitorGrp11
             }
         }
 
-        public List<TrackDataContainer> Calculate(TrackDataContainer currentFlights)
+        public List<TrackDataContainer> Calculate(List<TrackDataContainer> currentFlights)
         {
             List<TrackDataContainer> list = new List<TrackDataContainer>();
             foreach (var lastFlight in LastFlightData)
             {
-                if (lastFlight.Tag == currentFlights.Tag)
+                foreach (var currentFlight in currentFlights)
                 {
-                    LastPosition_X = lastFlight.X;
-                    LastPosition_Y = lastFlight.Y;
-                    CurrentPosition_X = currentFlights.X;
-                    CurrentPosition_Y = currentFlights.Y;
 
-                    //udregning
-                    var dX = CurrentPosition_X - LastPosition_X;
-                    var dY = CurrentPosition_Y - LastPosition_Y;
-
-                    if (dX == 0)
+                    if (lastFlight.Tag == currentFlight.Tag)
                     {
-                        if (CurrentPosition_Y > LastPosition_Y)
+                        LastPosition_X = lastFlight.X;
+                        LastPosition_Y = lastFlight.Y;
+                        CurrentPosition_X = currentFlight.X;
+                        CurrentPosition_Y = currentFlight.Y;
+
+                        //udregning
+                        var dX = CurrentPosition_X - LastPosition_X;
+                        var dY = CurrentPosition_Y - LastPosition_Y;
+
+                        if (dX == 0)
                         {
-                            Course = 0;
+                            if (CurrentPosition_Y > LastPosition_Y)
+                            {
+                                Course = 0;
+                            }
+                            else if (LastPosition_Y > CurrentPosition_Y)
+                            {
+                                Course = 180;
+                            }
                         }
-                        else if (LastPosition_Y > CurrentPosition_Y)
+
+                        if (dX > 0)
                         {
-                            Course = 180;
+                            Course = 90 - Math.Atan(dY / dX) * (180 / Math.PI);
                         }
-                    }
-                    
-                    if (dX > 0)
-                    {
-                        Course = 90 - Math.Atan(dY / dX) * (180 / Math.PI);
-                    }
-                        
-                    else if (dX < 0) 
-                    {
-                        Course = 270 - Math.Atan(dY / dX) * (180 / Math.PI);
-                    }
-                    
 
-                    lastFlight.Course = Convert.ToInt32(Course);
+                        else if (dX < 0)
+                        {
+                            Course = 270 - Math.Atan(dY / dX) * (180 / Math.PI);
+                        }
 
-                    list.Add(lastFlight);
 
+                        lastFlight.Course = Convert.ToInt32(Course);
+
+                        list.Add(lastFlight);
+                    }
 
                 }
             }

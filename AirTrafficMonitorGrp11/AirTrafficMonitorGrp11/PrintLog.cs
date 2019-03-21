@@ -27,12 +27,16 @@ namespace AirTrafficMonitorGrp11
             {
                 foreach (var data in DataRecivedList)
                 {
-                    //if ()
-                    //{
+                    foreach (var element in seperationList)
+                    {
+                        if (data.TrackTag1 != element.TrackTag1 && data.TrackTag2 != element.TrackTag2)
+                        {
+                            file.WriteLine("Time of occurance: " + data.TimeStamp + ":" + data.TimeStamp.Millisecond + "\nInvolved tracks: " + data.TrackTag1 + " and " + data.TrackTag2 + "\n");
+                            seperationList.Add(data);
+                        }
+                    }
 
-                    //}
-                    file.WriteLine("Time of occurance: " + data.TimeStamp + ":" + data.TimeStamp.Millisecond + "\nInvolved tracks: " + data.TrackTag1 + " and " + data.TrackTag2 + "\n");
-                    seperationList.Add(data);
+
                 }
             }
         }

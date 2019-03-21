@@ -11,6 +11,7 @@ namespace AirTrafficMonitorGrp11
         public event EventHandler<SeperationEvent> SeperationChecked;
         public iTrafficDataSorter _dataSorter;
         public List<TrackDataContainer> DataRecivedList { get; set; }
+        public List<SeperationContainer> TotalSeperationList = new List<SeperationContainer>();
 
         public SeperationChecker(iTrafficDataSorter dataSorter)
         {
@@ -42,6 +43,7 @@ namespace AirTrafficMonitorGrp11
                                 sc.TrackTag1 = DataRecivedList[i].Tag;
                                 sc.TrackTag2 = DataRecivedList[j].Tag;
                                 sc.TimeStamp = DataRecivedList[i].Timestamp;
+
                                 seperationList.Add(sc);
                             }
                         }
