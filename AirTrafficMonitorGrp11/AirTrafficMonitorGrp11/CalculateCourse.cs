@@ -68,12 +68,28 @@ namespace AirTrafficMonitorGrp11
 
                     if (dX == 0)
                     {
-                        dX = 1;
+                        if (CurrentPosition_Y > LastPosition_Y)
+                        {
+                            var Course = 0;
+                        }
+                        else if (LastPosition_Y > CurrentPosition_Y)
+                        {
+                            var Course = 180;
+                        }
                     }
-                    var Course = 90 - Math.Atan(dY / dX) * (180 * Math.PI);
+                    
+                    if (dX > 0)
+                    {
+                        var Course = 90 - Math.Atan(dY / dX) * (180 / Math.PI);
+                    }
+                        
+                    else if (dX < 0) 
+                    {
+                        var Course = 270 - Math.Atan(dY / dX) * (180 / Math.PI);
+                    }
+                    
 
                     Course = Convert.ToInt32(Course);
-
                     lastFlight.Course = Convert.ToInt32(Course);
 
                     list.Add(lastFlight);
