@@ -17,10 +17,10 @@ namespace AirTrafficMonitorGrp11
 
             iTrafficDataSorter dataSorter = new TrafficDataSorter(decoder);
 
-            iSeperationChecker separationChecker = new SeperationChecker(dataSorter);
             iCalculateVelocity calculateVelocity = new CalculateVelocity(dataSorter);
             iCalculateCourse calculateCourse = new CalculateCourse(calculateVelocity);
-
+            iSeperationChecker separationChecker = new SeperationChecker(calculateCourse);
+            
             iPrintConsole printConsole = new PrintConsole(calculateCourse, separationChecker);
             iPrintLog printLog = new PrintLog(separationChecker);
 

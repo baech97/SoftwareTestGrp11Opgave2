@@ -42,11 +42,10 @@ namespace AirTrafficMonitorGrp11
                 trackList = Calculate(CurrentFlightData);
                 LastFlightData = CurrentFlightData;
 
-            if (trackList.Count != 0)
-            {
+           
                 ATMEvent atmEvent = new ATMEvent(trackList);
                 VelocityCalculated?.Invoke(this, atmEvent);
-            }
+            
                 
         }
 
