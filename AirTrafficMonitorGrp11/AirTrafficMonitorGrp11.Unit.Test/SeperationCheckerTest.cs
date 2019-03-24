@@ -42,14 +42,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         }
 
         [Test]
-        public void Test_get_SeperationContainer()
-        {
-            SeperationContainer sc = new SeperationContainer();
-            Assert.IsNotNull(sc);
-
-        }
-
-        [Test]
         public void Seperation_Occurence_Detected()  
         {
             List<TrackDataContainer> List = new List<TrackDataContainer>();
@@ -72,7 +64,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container2.Altitude = 5000;
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             List.Add(container1);
             List.Add(container2);
             
@@ -105,7 +96,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container2.Altitude = 5000;
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             List.Add(container1);
             List.Add(container2);
 
@@ -152,7 +142,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container4.Altitude = 5000;
             container4.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             List.Add(container1);
             List.Add(container2);
             List.Add(container3);
@@ -164,38 +153,71 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             Assert.That(SeperationList.Count, Is.EqualTo(2));
         }
 
-        //[Test]
-        //public void Seperation_Occurence_Detected_Altitude()
-        //{
-        //    List<TrackDataContainer> List = new List<TrackDataContainer>();
-        //    List<SeperationContainer> SeperationList = new List<SeperationContainer>();
+        [Test]
+        public void CloseDistance_FarAltitude_Occurence_NotDetected() 
+        {
+            List<TrackDataContainer> List = new List<TrackDataContainer>();
+            List<SeperationContainer> SeperationList = new List<SeperationContainer>();
 
 
-        //    TrackDataContainer container1 = new TrackDataContainer();
-        //    TrackDataContainer container2 = new TrackDataContainer();
+            TrackDataContainer container1 = new TrackDataContainer();
+            TrackDataContainer container2 = new TrackDataContainer();
 
-        //    container1.Tag = "ATR423";
-        //    container2.Tag = "ILP123";
+            container1.Tag = "ATR423";
+            container2.Tag = "ILP123";
 
-        //    container1.X = 5000;
-        //    container1.Y = 1000;
-        //    container1.Altitude = 5000;
-        //    container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
+            container1.X = 5000;
+            container1.Y = 1000;
+            container1.Altitude = 5000;
+            container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
 
-        //    container2.X = 70000;
-        //    container2.Y = 70000;
-        //    container2.Altitude = 5000;
-        //    container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
+            container2.X = 5050;
+            container2.Y = 1050;
+            container2.Altitude = 17000;
+            container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-        //    //Beregn
-        //    List.Add(container1);
-        //    List.Add(container2);
+            List.Add(container1);
+            List.Add(container2);
 
-        //    _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
-        //    SeperationList = _uut.CheckSeperation(List);
+            _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
+            SeperationList = _uut.CheckSeperation(List);
 
-        //    Assert.That(SeperationList.Count, Is.EqualTo(1));
-        //}
+            Assert.That(SeperationList.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FarDistance_CloseAltitude_Occurence_NotDetected() 
+        {
+            List<TrackDataContainer> List = new List<TrackDataContainer>();
+            List<SeperationContainer> SeperationList = new List<SeperationContainer>();
+
+
+            TrackDataContainer container1 = new TrackDataContainer();
+            TrackDataContainer container2 = new TrackDataContainer();
+
+            container1.Tag = "ATR423";
+            container2.Tag = "ILP123";
+
+            container1.X = 5000;
+            container1.Y = 1000;
+            container1.Altitude = 5000;
+            container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
+
+            container2.X = 70000;
+            container2.Y = 70000;
+            container2.Altitude = 5050;
+            container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
+
+            List.Add(container1);
+            List.Add(container2);
+
+            _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
+            SeperationList = _uut.CheckSeperation(List);
+
+            Assert.That(SeperationList.Count, Is.EqualTo(0));
+        }
+
+
 
     }
 }
