@@ -22,6 +22,7 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataDecoded(object sender, ATMEvent e)
         {
+            DataRecivedList = new List<TrackDataContainer>();
             DataRecivedList = e._tdcList;
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
             tdcList = SortData(DataRecivedList);

@@ -19,7 +19,7 @@ namespace AirTrafficMonitorGrp11
         public double Course { get; set; }
 
         //
-        public List<TrackDataContainer> LastFlightData { get; set; }
+        public List<TrackDataContainer> LastFlightData { get; set; } = new List<TrackDataContainer>();
         private List<TrackDataContainer> CurrentFlightData;
 
         public CalculateCourse(iCalculateVelocity calculateVelocity)
@@ -34,21 +34,20 @@ namespace AirTrafficMonitorGrp11
 
         public void OnVelocityCalculated(object sender, ATMEvent e)
         {
-            List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
+            List<TrackDataContainer> trackList = new List<TrackDataContainer>();
+
             CurrentFlightData = new List<TrackDataContainer>();
             CurrentFlightData = e._tdcList;
-            
-          
-                tdcList = Calculate(CurrentFlightData);
-            
-
+            trackList = Calculate(CurrentFlightData);
             LastFlightData = CurrentFlightData;
-
-            if (LastFlightData.Count != 0)
+            
+            if (trackList.Count != 0)
             {
-                ATMEvent atmEvent = new ATMEvent(tdcList);
+                ATMEvent atmEvent = new ATMEvent(trackList);
                 CourseCalculated?.Invoke(this, atmEvent);
             }
+                
+            
         }
 
         public List<TrackDataContainer> Calculate(List<TrackDataContainer> currentFlights)

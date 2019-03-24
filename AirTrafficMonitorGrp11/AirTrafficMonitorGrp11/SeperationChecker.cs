@@ -11,7 +11,6 @@ namespace AirTrafficMonitorGrp11
         public event EventHandler<SeperationEvent> SeperationChecked;
         public iTrafficDataSorter _dataSorter;
         public List<TrackDataContainer> DataRecivedList { get; set; }
-        public List<SeperationContainer> TotalSeperationList = new List<SeperationContainer>();
 
         public SeperationChecker(iTrafficDataSorter dataSorter)
         {
@@ -22,6 +21,7 @@ namespace AirTrafficMonitorGrp11
         public void OnDataSorted(object sender, ATMEvent e)
         {
             List<SeperationContainer> seperationList = new List<SeperationContainer>();
+            DataRecivedList = new List<TrackDataContainer>();
             DataRecivedList = e._tdcList;
 
             for (int i = 0; i < DataRecivedList.Count; i++)
@@ -33,11 +33,11 @@ namespace AirTrafficMonitorGrp11
                     var d = Math.Sqrt(Math.Pow(dX, 2) + Math.Pow(dY, 2));
                     var dA = Math.Abs(DataRecivedList[i].Altitude - DataRecivedList[j].Altitude);
 
-                    if (dA < 30000)
+                    if (dA < 300)
                     {
-                        if (dX <= 50000 && dY < 50000)
+                        if (dX <= 5000 && dY < 5000)
                         {
-                            if (d < 50000)
+                            if (d < 5000)
                             {
                                 SeperationContainer sc = new SeperationContainer();
                                 sc.TrackTag1 = DataRecivedList[i].Tag;

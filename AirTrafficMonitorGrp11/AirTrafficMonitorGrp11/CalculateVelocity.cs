@@ -22,7 +22,7 @@ namespace AirTrafficMonitorGrp11
         public double Velocity { get; set; }
 
 
-        public List<TrackDataContainer> LastFlightData { get; set; }
+        public List<TrackDataContainer> LastFlightData { get; set; } = new List<TrackDataContainer>();
         private List<TrackDataContainer> CurrentFlightData;
 
 
@@ -35,22 +35,19 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataSorted(object sender, ATMEvent e)
         {
-            List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
-            CurrentFlightData = new List<TrackDataContainer>();
-            CurrentFlightData = e._tdcList;
+           
+                List<TrackDataContainer> trackList = new List<TrackDataContainer>();
+                CurrentFlightData = new List<TrackDataContainer>();
+                CurrentFlightData = e._tdcList;
+                trackList = Calculate(CurrentFlightData);
+                LastFlightData = CurrentFlightData;
 
-
-            
-            tdcList = Calculate(CurrentFlightData);
-            
-
-            LastFlightData = CurrentFlightData;
-
-            if (LastFlightData.Count !=0)
+            if (trackList.Count != 0)
             {
-                ATMEvent atmEvent = new ATMEvent(tdcList);
+                ATMEvent atmEvent = new ATMEvent(trackList);
                 VelocityCalculated?.Invoke(this, atmEvent);
             }
+                
         }
 
         public List<TrackDataContainer> Calculate(List<TrackDataContainer> currentFlights)
@@ -81,11 +78,7 @@ namespace AirTrafficMonitorGrp11
                         LastFlight.Velocity = Convert.ToInt32(Velocity);
 
                         list.Add(LastFlight);
-
-
-
                     }
-
                 }
             }
 
