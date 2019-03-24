@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="CalculateCourseTest.cs" />
     <Compile Include="CalculateVelocityTest.cs" />
+    <Compile Include="ConsolePrintTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeperationCheckerTest.cs" />
     <Compile Include="TrafficDataSorterTest.cs" />
