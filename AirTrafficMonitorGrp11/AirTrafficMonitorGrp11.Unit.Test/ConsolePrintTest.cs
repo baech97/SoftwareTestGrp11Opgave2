@@ -10,7 +10,7 @@ using TransponderReceiver;
 
 namespace AirTrafficMonitorGrp11.Unit.Test
 {
-    [TestFixture()]
+    [TestFixture]
     class ConsolePrintTest
     {
         private iCalculateCourse _Course;
