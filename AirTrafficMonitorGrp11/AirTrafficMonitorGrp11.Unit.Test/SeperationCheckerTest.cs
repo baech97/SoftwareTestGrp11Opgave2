@@ -154,7 +154,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         }
 
         [Test]
-        public void CloseDistance_FarAltitude_Occurence_NotDetected() 
+        public void CloseDistance_FarAltitude_Occurence_NotDetected()  
         {
             List<TrackDataContainer> List = new List<TrackDataContainer>();
             List<SeperationContainer> SeperationList = new List<SeperationContainer>();
@@ -173,7 +173,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             container2.X = 5050;
             container2.Y = 1050;
-            container2.Altitude = 17000;
+            container2.Altitude = 5301;
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
             List.Add(container1);
