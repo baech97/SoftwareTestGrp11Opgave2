@@ -25,7 +25,7 @@ namespace AirTrafficMonitorGrp11
         {
             DataRecivedList = new List<SeperationContainer>();
             DataRecivedList = e._SeperationList;
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt", true))
             {
               foreach (var data in DataRecivedList)
               {

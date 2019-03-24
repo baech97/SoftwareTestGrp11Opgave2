@@ -44,7 +44,7 @@ namespace AirTrafficMonitorGrp11
                     var d = Math.Sqrt(Math.Pow(dX, 2) + Math.Pow(dY, 2));
                     var dA = Math.Abs(list[i].Altitude - list[j].Altitude);
 
-                    if (dA < 300 && d < 5000)
+                    if (dA < 30000 && d < 50000)
                     {
                         SeperationContainer sc = new SeperationContainer();
                         sc.TrackTag1 = DataRecivedList[i].Tag;
