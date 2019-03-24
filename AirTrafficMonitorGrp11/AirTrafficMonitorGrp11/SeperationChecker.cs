@@ -20,18 +20,29 @@ namespace AirTrafficMonitorGrp11
 
         public void OnCourseCalculated(object sender, ATMEvent e)
         {
-            List<SeperationContainer> seperationList = new List<SeperationContainer>();
+            List<SeperationContainer> calculatedList = new List<SeperationContainer>();
             DataRecivedList = new List<TrackDataContainer>();
             DataRecivedList = e._tdcList;
+            calculatedList = CheckSeperation(DataRecivedList);
+            
 
-            for (int i = 0; i < DataRecivedList.Count; i++)
+            SeperationEvent seperationEvent = new SeperationEvent(calculatedList);
+            SeperationChecked?.Invoke(this, seperationEvent);
+
+        }
+
+        public List<SeperationContainer> CheckSeperation(List<TrackDataContainer> list)
+        {
+            List<SeperationContainer> seperationList = new List<SeperationContainer>();
+
+            for (int i = 0; i < list.Count; i++)
             {
-                for (int j = i + 1; j < DataRecivedList.Count; j++)
+                for (int j = i + 1; j < list.Count; j++)
                 {
-                    var dX = DataRecivedList[i].X - DataRecivedList[j].X;
-                    var dY = DataRecivedList[i].Y - DataRecivedList[j].Y;
+                    var dX = list[i].X - list[j].X;
+                    var dY = list[i].Y - list[j].Y;
                     var d = Math.Sqrt(Math.Pow(dX, 2) + Math.Pow(dY, 2));
-                    var dA = Math.Abs(DataRecivedList[i].Altitude - DataRecivedList[j].Altitude);
+                    var dA = Math.Abs(list[i].Altitude - list[j].Altitude);
 
                     if (dA < 300 && d < 5000)
                     {
@@ -44,9 +55,7 @@ namespace AirTrafficMonitorGrp11
                 }
             }
 
-            SeperationEvent seperationEvent = new SeperationEvent(seperationList);
-            SeperationChecked?.Invoke(this, seperationEvent);
-
+            return seperationList;
         }
     }
 }
