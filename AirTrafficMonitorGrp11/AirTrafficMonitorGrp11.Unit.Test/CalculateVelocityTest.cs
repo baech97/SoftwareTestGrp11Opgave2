@@ -44,14 +44,11 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container1.Timestamp = new DateTime(2000,10,10,10,10,1);
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             LastFlight.Add(container1);
             CurrentFlight.Add(container2);
 
             _uut.LastFlightData = LastFlight;
-
             _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
-
             Assert.That(_uut.Velocity, Is.EqualTo(1000));
         }
 
@@ -76,14 +73,11 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             LastFlight.Add(container1);
             CurrentFlight.Add(container2);
 
             _uut.LastFlightData = LastFlight;
-
             _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
-
             Assert.That(_uut.Velocity, Is.EqualTo(5000));
         }
 
@@ -108,14 +102,11 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             LastFlight.Add(container1);
             CurrentFlight.Add(container2);
 
             _uut.LastFlightData = LastFlight;
-
             _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
-
             Assert.That(_uut.Velocity, Is.EqualTo(5000));
         }
 
@@ -140,14 +131,11 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container1.Timestamp = new DateTime(2000, 10, 10, 10, 10, 1);
             container2.Timestamp = new DateTime(2000, 10, 10, 10, 10, 2);
 
-            //Beregn
             LastFlight.Add(container1);
             CurrentFlight.Add(container2);
 
             _uut.LastFlightData = LastFlight;
-
             _dataSorter.DataSorted += Raise.EventWith(this, new ATMEvent(CurrentFlight));
-
             Assert.That(_uut.Velocity, Is.EqualTo(0));
         }
     }

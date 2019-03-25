@@ -27,8 +27,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void TestReception()
         {
             List<TrackDataContainer> dataList = new List<TrackDataContainer>();
-            
             TrackDataContainer container = new TrackDataContainer();
+
             container.Tag = "ATR423";
             container.X = 20000;
             container.Y = 30000;
@@ -42,7 +42,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             Assert.That(_uut.DataRecivedList, Is.EqualTo(dataList));
         }
 
-
         [TestCase(10000, 20000, 10000)]
         [TestCase(20000, 10000, 10000)]
         [TestCase(20000, 30000, 500)]
@@ -52,7 +51,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void Track_inside_airspace(int s1, int s2, int s3) 
         {
             List<TrackDataContainer> dataList = new List<TrackDataContainer>();
-
             TrackDataContainer container = new TrackDataContainer();
             container.Tag = "ATR423";
             container.X = s1;
@@ -61,11 +59,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container.Timestamp = DateTime.Now;
 
             dataList.Add(container);
-
             Assert.That(_uut.SortData(dataList), Is.EqualTo(dataList));
         }
-
-
 
         [TestCase(9999, 20000, 10000)]
         [TestCase(20000, 9999, 10000)]
@@ -76,8 +71,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void Track_outside_airspace(int s1, int s2, int s3)
         {
             List<TrackDataContainer> dataList = new List<TrackDataContainer>();
-
             TrackDataContainer container = new TrackDataContainer();
+
             container.Tag = "ATR423";
             container.X = s1;
             container.Y = s2;
@@ -85,10 +80,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container.Timestamp = DateTime.Now;
 
             dataList.Add(container);
-
             Assert.That(_uut.SortData(dataList), Is.Not.EqualTo(dataList));
         }
-
-
     }
 }

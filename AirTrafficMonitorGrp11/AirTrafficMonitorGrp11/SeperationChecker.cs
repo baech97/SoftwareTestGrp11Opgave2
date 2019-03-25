@@ -25,10 +25,8 @@ namespace AirTrafficMonitorGrp11
             DataRecivedList = e._tdcList;
             calculatedList = CheckSeperation(DataRecivedList);
             
-
             SeperationEvent seperationEvent = new SeperationEvent(calculatedList);
             SeperationChecked?.Invoke(this, seperationEvent);
-
         }
 
         public List<SeperationContainer> CheckSeperation(List<TrackDataContainer> list)
@@ -54,7 +52,6 @@ namespace AirTrafficMonitorGrp11
                     }
                 }
             }
-
             return seperationList;
         }
     }

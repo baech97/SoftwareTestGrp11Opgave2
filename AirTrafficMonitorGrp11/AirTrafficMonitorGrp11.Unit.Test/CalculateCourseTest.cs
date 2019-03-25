@@ -43,11 +43,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             CurrentFlights.Add(container);
             LastFlightData.Add(container2);
-
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(45));
         }
 
@@ -56,8 +53,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         {
             List<TrackDataContainer> CurrentFlights = new List<TrackDataContainer>();
             List<TrackDataContainer> LastFlightData = new List<TrackDataContainer>();
-
             TrackDataContainer container = new TrackDataContainer();
+
             container.Tag = "ATR423";
             container.X = 20000;
             container.Y = 10000;
@@ -75,9 +72,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(135));
         }
 
@@ -105,9 +100,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(225));
         }
 
@@ -135,9 +128,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(315));
         }
 
@@ -165,9 +156,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(0));
         }
 
@@ -195,9 +184,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(180));
         }
 
@@ -225,9 +212,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(90));
         }
 
@@ -242,20 +227,16 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container.X = 10000;
             container.Y = 10000;
 
-
             TrackDataContainer container2 = new TrackDataContainer();
             container2.Tag = "ATR423";
             container2.X = 20000;
             container2.Y = 10000;
 
-
             CurrentFlights.Add(container);
             LastFlightData.Add(container2);
 
             _uut.LastFlightData = LastFlightData;
-
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
-
             Assert.That(_uut.Course, Is.EqualTo(270));
         }
 

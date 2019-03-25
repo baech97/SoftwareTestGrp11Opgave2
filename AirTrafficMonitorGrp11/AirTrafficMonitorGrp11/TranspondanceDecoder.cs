@@ -14,7 +14,6 @@ namespace AirTrafficMonitorGrp11
         public event EventHandler<ATMEvent> DataDecoded;
         public List<string> DataRecivedList { get; set; }
 
-
         public TranspondanceDecoder(ITransponderReceiver transponderReceiver)
         {
             _transponderReceiver = transponderReceiver;
@@ -31,8 +30,6 @@ namespace AirTrafficMonitorGrp11
             {
                 string[] inputFields;
                 TrackDataContainer _tdc = new TrackDataContainer();
-                ;
-
                 inputFields = data.Split(';');
                 _tdc.Tag = Convert.ToString(inputFields[0]);
                 _tdc.X = Convert.ToInt32(inputFields[1]);

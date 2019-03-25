@@ -32,7 +32,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             testData.Add("XYZ987;25059;75654;4000;20151006213456789");
 
             _receiver.TransponderDataReady += Raise.EventWith(this, new RawTransponderDataEventArgs(testData));
-
             Assert.That(_uut.DataRecivedList, Is.EqualTo(testData));
         }
     }

@@ -11,13 +11,11 @@ namespace AirTrafficMonitorGrp11
     {
         private iCalculateVelocity _calculateVelocity;
         public event EventHandler<ATMEvent> CourseCalculated;
-
         private int LastPosition_X;
         private int LastPosition_Y;
         private int CurrentPosition_X;
         private int CurrentPosition_Y;
         public double Course { get; set; }
-
        
         public List<TrackDataContainer> LastFlightData { get; set; } = new List<TrackDataContainer>();
         private List<TrackDataContainer> CurrentFlightData;
@@ -27,10 +25,7 @@ namespace AirTrafficMonitorGrp11
             _calculateVelocity = calculateVelocity;
             _calculateVelocity.VelocityCalculated += OnVelocityCalculated;
             LastFlightData = new List<TrackDataContainer>();
-            
         }
-
-        //event
 
         public void OnVelocityCalculated(object sender, ATMEvent e)
         {
@@ -41,12 +36,8 @@ namespace AirTrafficMonitorGrp11
             trackList = Calculate(CurrentFlightData);
             LastFlightData = CurrentFlightData;
             
-            
-                ATMEvent atmEvent = new ATMEvent(trackList);
-                CourseCalculated?.Invoke(this, atmEvent);
-            
-                
-            
+            ATMEvent atmEvent = new ATMEvent(trackList);
+            CourseCalculated?.Invoke(this, atmEvent);
         }
 
         public List<TrackDataContainer> Calculate(List<TrackDataContainer> currentFlights)
@@ -63,7 +54,6 @@ namespace AirTrafficMonitorGrp11
                         LastPosition_Y = lastFlight.Y;
                         CurrentPosition_X = currentFlight.X;
                         CurrentPosition_Y = currentFlight.Y;
-
                         
                         var dX = CurrentPosition_X - LastPosition_X;
                         var dY = CurrentPosition_Y - LastPosition_Y;
@@ -79,7 +69,6 @@ namespace AirTrafficMonitorGrp11
                                 Course = 180;
                             }
                         }
-
                         if (dX > 0)
                         {
                             Course = 90 - Math.Atan(dY / dX) * (180 / Math.PI);
@@ -90,12 +79,10 @@ namespace AirTrafficMonitorGrp11
                             Course = 270 - Math.Atan(dY / dX) * (180 / Math.PI);
                         }
 
-
                         lastFlight.Course = Convert.ToInt32(Course);
 
                         list.Add(lastFlight);
                     }
-
                 }
             }
             return list;
