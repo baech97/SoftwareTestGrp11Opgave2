@@ -51,8 +51,6 @@
     <Compile Include="CalculateVelocity.cs" />
     <Compile Include="Interfaces\iCalculateCourse.cs" />
     <Compile Include="Interfaces\iCalculateVelocity.cs" />
-    <Compile Include="Interfaces\iPrintConsole.cs" />
-    <Compile Include="Interfaces\iPrintLog.cs" />
     <Compile Include="Interfaces\iSeperationChecker.cs" />
     <Compile Include="Interfaces\iTrafficDataSorter.cs" />
     <Compile Include="Interfaces\iTranspondanceDecoder.cs" />

@@ -21,8 +21,8 @@ namespace AirTrafficMonitorGrp11
             iCalculateCourse calculateCourse = new CalculateCourse(calculateVelocity);
             iSeperationChecker separationChecker = new SeperationChecker(calculateCourse);
             
-            iPrintConsole printConsole = new PrintConsole(calculateCourse, separationChecker);
-            iPrintLog printLog = new PrintLog(separationChecker);
+            PrintConsole printConsole = new PrintConsole(calculateCourse, separationChecker);
+            PrintLog printLog = new PrintLog(separationChecker);
 
             while (true)
                 Thread.Sleep(1000);

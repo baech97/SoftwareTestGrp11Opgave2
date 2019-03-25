@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    public class PrintConsole : iPrintConsole
+    public class PrintConsole
     {
         public iCalculateCourse _calculateCourse;
         public iSeperationChecker _seperationChecker;
@@ -41,7 +41,7 @@ namespace AirTrafficMonitorGrp11
 
             foreach (var data in TrackDataRecivedList)
             {
-                Console.WriteLine("Tag: " + data.Tag + " - Position: X: " + data.X + " meters, Y: " + data.Y + " meters - Current altitude: " + data.Altitude + " meters\nVelocity: " + data.Velocity + " m/sCourse: " + data.Course + "degrees from north - " + "Timestamp: " + data.Timestamp + ":" + data.Timestamp.Millisecond + "\n");
+                Console.WriteLine("Tag: " + data.Tag + " - Position: X: " + data.X + " meters, Y: " + data.Y + " meters - Current altitude: " + data.Altitude + " meters\nVelocity: " + data.Velocity + " m/s - Course: " + data.Course + "degrees from north - " + "Timestamp: " + data.Timestamp + ":" + data.Timestamp.Millisecond + "\n");
             }
         }
 

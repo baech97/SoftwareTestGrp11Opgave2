@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirTrafficMonitorGrp11
 {
-    public class PrintLog : iPrintLog
+    public class PrintLog
     {
         public iSeperationChecker _seperationChecker;
         public List<SeperationContainer> DataRecivedList { get; set; }
@@ -25,7 +25,7 @@ namespace AirTrafficMonitorGrp11
         {
             DataRecivedList = new List<SeperationContainer>();
             DataRecivedList = e._SeperationList;
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt"))
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"Log.txt", true))
             {
               foreach (var data in DataRecivedList)
               {
