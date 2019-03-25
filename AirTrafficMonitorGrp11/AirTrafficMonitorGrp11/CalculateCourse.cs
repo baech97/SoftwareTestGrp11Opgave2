@@ -18,7 +18,7 @@ namespace AirTrafficMonitorGrp11
         private int CurrentPosition_Y;
         public double Course { get; set; }
 
-        //
+       
         public List<TrackDataContainer> LastFlightData { get; set; } = new List<TrackDataContainer>();
         private List<TrackDataContainer> CurrentFlightData;
 
@@ -64,7 +64,7 @@ namespace AirTrafficMonitorGrp11
                         CurrentPosition_X = currentFlight.X;
                         CurrentPosition_Y = currentFlight.Y;
 
-                        //udregning
+                        
                         var dX = CurrentPosition_X - LastPosition_X;
                         var dY = CurrentPosition_Y - LastPosition_Y;
 
@@ -100,34 +100,5 @@ namespace AirTrafficMonitorGrp11
             }
             return list;
         }
-
-        //
-        //public CalculateCourse(iCalculateVelocity calculateVelocity)
-        //{
-        //    _calculateVelocity = calculateVelocity;
-        //    _calculateVelocity.VelocityCalculated += OnVelocityCalculated;
-        //}
-
-        //public void OnVelocityCalculated(object sender, List<TrackDataContainer> e)
-        //{
-        //    List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
-        //    foreach (var data in e)
-        //    {
-        //        CurrentPosition_X = data.X;
-        //        CurrentPosition_Y = data.Y;
-
-        //        if (LastPosition_X == 0)
-        //        {
-        //            Course = 90 - Math.Atan((CurrentPosition_Y - LastPosition_Y) / (CurrentPosition_X - LastPosition_X)) * (180 * Math.PI);
-        //            data.Course = Convert.ToInt32(Course);
-        //            tdcList.Add(data);
-        //        }
-
-        //        LastPosition_X = data.X;
-        //        LastPosition_Y = data.Y;
-        //    }
-
-        //    CourseCalculated?.Invoke(this, tdcList);
-        //}
     }
 }
