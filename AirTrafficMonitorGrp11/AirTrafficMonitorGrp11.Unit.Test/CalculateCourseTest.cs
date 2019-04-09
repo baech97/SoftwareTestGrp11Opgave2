@@ -74,6 +74,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             CurrentFlights.Add(container);
             LastFlightData.Add(container2);
 
+            
             _uut.LastFlightData = LastFlightData;
 
             _receiver.VelocityCalculated += Raise.EventWith(this, new ATMEvent(CurrentFlights));
@@ -258,6 +259,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             Assert.That(_uut.Course, Is.EqualTo(270));
         }
+
+        
 
     }
 }
