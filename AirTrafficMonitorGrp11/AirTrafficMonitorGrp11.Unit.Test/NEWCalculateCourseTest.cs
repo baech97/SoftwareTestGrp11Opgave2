@@ -66,16 +66,12 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container.X = 20000;
             container.Y = 10000;
             container.Altitude = 10000;
-            container.Timestamp = DateTime.Now;
-            container.Velocity = 280;
 
             TrackDataContainer container2 = new TrackDataContainer();
             container2.Tag = "ATR423";
             container2.X = 10000;
             container2.Y = 20000;
             container2.Altitude = 10000;
-            container2.Timestamp = DateTime.Now;
-            container2.Velocity = 280;
 
             currentflightlist.Add(container);
             lastflightlist.Add(container2);
@@ -83,6 +79,34 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             _uut.LastFlightData = lastflightlist;
 
             _velocity.VelocityCalculated += Raise.EventWith(new ATMEvent(currentflightlist));
+
+            Assert.That(_event._tdcList[0].Course, Is.EqualTo(135));
+        }
+
+        [Test]
+        public void CorrectCourseCalculated_135()
+        {
+            List<TrackDataContainer> list1 = new List<TrackDataContainer>();
+            List<TrackDataContainer> list2 = new List<TrackDataContainer>();
+
+            
+
+            TrackDataContainer container = new TrackDataContainer();
+            container.Tag = "ATR423";
+            container.X = 20000;
+            container.Y = 10000;
+
+            TrackDataContainer container2 = new TrackDataContainer();
+            container2.Tag = "ATR423";
+            container2.X = 10000;
+            container2.Y = 20000;
+
+            list1.Add(container);
+            list2.Add(container2);
+
+            _velocity.VelocityCalculated += Raise.EventWith(new ATMEvent(list2));
+
+            _velocity.VelocityCalculated += Raise.EventWith(new ATMEvent(list1));
 
             Assert.That(_event._tdcList[0].Course, Is.EqualTo(135));
         }
