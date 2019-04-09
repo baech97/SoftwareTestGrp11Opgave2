@@ -13,7 +13,6 @@ namespace AirTrafficMonitorGrp11
         public List<SeperationContainer> SeperationDataRecivedList { get; set; }
         public List<TrackDataContainer> TrackDataRecivedList { get; set; }
 
-
         public PrintConsole(iCalculateCourse calculateCourse, iSeperationChecker seperationChecker)
         {
             _calculateCourse = calculateCourse;
@@ -44,6 +43,5 @@ namespace AirTrafficMonitorGrp11
                 Console.WriteLine("Tag: " + data.Tag + " - Position: X: " + data.X + " meters, Y: " + data.Y + " meters - Current altitude: " + data.Altitude + " meters\nVelocity: " + data.Velocity + " m/s - Course: " + data.Course + "degrees from north - " + "Timestamp: " + data.Timestamp + ":" + data.Timestamp.Millisecond + "\n");
             }
         }
-
     }
 }

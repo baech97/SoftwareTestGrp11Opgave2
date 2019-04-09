@@ -13,8 +13,6 @@ namespace AirTrafficMonitorGrp11
         public List<SeperationContainer> DataRecivedList { get; set; }
         public List<string> TotalSeperationList = new List<string>();
 
-
-
         public PrintLog(iSeperationChecker seperationChecker)
         {
             _seperationChecker = seperationChecker;

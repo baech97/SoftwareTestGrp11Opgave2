@@ -33,13 +33,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             seperationContainer.TimeStamp = DateTime.Now;
 
             scList.Add(seperationContainer);
-
             _seperationChecker.SeperationChecked += Raise.EventWith(this, new SeperationEvent(scList));
-
             Assert.That(_uut.DataRecivedList, Is.EqualTo(scList));
-
-
-
         }
        
     }

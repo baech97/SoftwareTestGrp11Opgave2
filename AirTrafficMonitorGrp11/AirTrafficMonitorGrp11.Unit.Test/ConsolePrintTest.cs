@@ -40,9 +40,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             trackDataContainer.Timestamp = DateTime.Now;
 
             tdcList.Add(trackDataContainer);
-
             _Course.CourseCalculated += Raise.EventWith(this, new ATMEvent(tdcList));
-
             Assert.That(_uut.TrackDataRecivedList, Is.EqualTo(tdcList));
         }
 
@@ -57,9 +55,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             seperationContainer.TimeStamp = DateTime.Now;
         
             scList.Add(seperationContainer);
-
             _seperationChecker.SeperationChecked += Raise.EventWith(this, new SeperationEvent(scList));
-
             Assert.That(_uut.SeperationDataRecivedList, Is.EqualTo(scList));
         }
 

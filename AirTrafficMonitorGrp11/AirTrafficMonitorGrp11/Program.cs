@@ -14,9 +14,7 @@ namespace AirTrafficMonitorGrp11
         {
             var receiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
             iTranspondanceDecoder decoder = new TranspondanceDecoder(receiver);
-
             iTrafficDataSorter dataSorter = new TrafficDataSorter(decoder);
-
             iCalculateVelocity calculateVelocity = new CalculateVelocity(dataSorter);
             iCalculateCourse calculateCourse = new CalculateCourse(calculateVelocity);
             iSeperationChecker separationChecker = new SeperationChecker(calculateCourse);
@@ -25,7 +23,7 @@ namespace AirTrafficMonitorGrp11
             PrintLog printLog = new PrintLog(separationChecker);
 
             while (true)
-                Thread.Sleep(1000);
+            Thread.Sleep(1000);
         }
     }
 }

@@ -26,7 +26,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         public void TestReception()
         {
             List<TrackDataContainer> dataList = new List<TrackDataContainer>();
-
             TrackDataContainer container = new TrackDataContainer();
             container.Tag = "ATR423";
             container.X = 20000;
@@ -35,9 +34,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             container.Timestamp = DateTime.Now;
 
             dataList.Add(container);
-
             _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(dataList));
-
             Assert.That(_uut.DataRecivedList, Is.EqualTo(dataList));
         }
 
@@ -69,7 +66,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             
             _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
             SeperationList = _uut.CheckSeperation(List);
-
             Assert.That(SeperationList.Count, Is.EqualTo(1));
         }
 
@@ -78,7 +74,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         {
             List<TrackDataContainer> List = new List<TrackDataContainer>();
             List<SeperationContainer> SeperationList = new List<SeperationContainer>();
-
 
             TrackDataContainer container1 = new TrackDataContainer();
             TrackDataContainer container2 = new TrackDataContainer();
@@ -101,7 +96,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
             SeperationList = _uut.CheckSeperation(List);
-
             Assert.That(SeperationList.Count, Is.EqualTo(0));
         }
 
@@ -111,7 +105,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
             List<TrackDataContainer> List = new List<TrackDataContainer>();
             List<SeperationContainer> SeperationList = new List<SeperationContainer>();
 
-
             TrackDataContainer container1 = new TrackDataContainer();
             TrackDataContainer container2 = new TrackDataContainer();
             TrackDataContainer container3 = new TrackDataContainer();
@@ -119,8 +112,8 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             container1.Tag = "ATR423";
             container2.Tag = "ILP123";
-            container3.Tag = "SUT389";
-            container4.Tag = "DEN123";
+            container3.Tag = "SAT389";
+            container4.Tag = "DKN123";
 
             container1.X = 5000;
             container1.Y = 1000;
@@ -149,7 +142,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
             SeperationList = _uut.CheckSeperation(List);
-
             Assert.That(SeperationList.Count, Is.EqualTo(2));
         }
 
@@ -158,7 +150,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         {
             List<TrackDataContainer> List = new List<TrackDataContainer>();
             List<SeperationContainer> SeperationList = new List<SeperationContainer>();
-
 
             TrackDataContainer container1 = new TrackDataContainer();
             TrackDataContainer container2 = new TrackDataContainer();
@@ -181,7 +172,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
             SeperationList = _uut.CheckSeperation(List);
-
             Assert.That(SeperationList.Count, Is.EqualTo(0));
         }
 
@@ -190,7 +180,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         {
             List<TrackDataContainer> List = new List<TrackDataContainer>();
             List<SeperationContainer> SeperationList = new List<SeperationContainer>();
-
 
             TrackDataContainer container1 = new TrackDataContainer();
             TrackDataContainer container2 = new TrackDataContainer();
@@ -213,7 +202,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _calculateCourse.CourseCalculated += Raise.EventWith(this, new ATMEvent(List));
             SeperationList = _uut.CheckSeperation(List);
-
             Assert.That(SeperationList.Count, Is.EqualTo(0));
         }
 

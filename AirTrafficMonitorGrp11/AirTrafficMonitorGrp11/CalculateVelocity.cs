@@ -11,7 +11,6 @@ namespace AirTrafficMonitorGrp11
     {
         private iTrafficDataSorter _dataSorter;
         public event EventHandler<ATMEvent> VelocityCalculated;
-
         private int LastPosition_X;
         private int LastPosition_Y;
         private int CurrentPosition_X;
@@ -21,10 +20,8 @@ namespace AirTrafficMonitorGrp11
         private double timediff;
         public double Velocity { get; set; }
 
-
         public List<TrackDataContainer> LastFlightData { get; set; } = new List<TrackDataContainer>();
         private List<TrackDataContainer> CurrentFlightData;
-
 
         public CalculateVelocity(iTrafficDataSorter dataSorter)
         {
@@ -35,18 +32,14 @@ namespace AirTrafficMonitorGrp11
 
         public void OnDataSorted(object sender, ATMEvent e)
         {
-           
                 List<TrackDataContainer> trackList = new List<TrackDataContainer>();
                 CurrentFlightData = new List<TrackDataContainer>();
                 CurrentFlightData = e._tdcList;
                 trackList = Calculate(CurrentFlightData);
                 LastFlightData = CurrentFlightData;
-
            
                 ATMEvent atmEvent = new ATMEvent(trackList);
                 VelocityCalculated?.Invoke(this, atmEvent);
-            
-                
         }
 
         public List<TrackDataContainer> Calculate(List<TrackDataContainer> currentFlights)
@@ -66,21 +59,14 @@ namespace AirTrafficMonitorGrp11
                         CurrentPosition_Y = currentFlight.Y;
                         CurrentTime = currentFlight.Timestamp;
 
-
-
-
                         TimeSpan ts = CurrentTime - LastTime;
                         timediff = ts.TotalMilliseconds;
-
                         Velocity = (Math.Sqrt(Math.Pow(CurrentPosition_X - LastPosition_X, 2) + Math.Pow(CurrentPosition_Y - LastPosition_Y, 2)) / timediff) * 1000;
-
                         LastFlight.Velocity = Convert.ToInt32(Velocity);
-
                         list.Add(LastFlight);
                     }
                 }
             }
-
             return list;
         }
     }

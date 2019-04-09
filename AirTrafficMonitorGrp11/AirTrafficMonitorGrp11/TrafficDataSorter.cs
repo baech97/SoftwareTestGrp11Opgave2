@@ -19,7 +19,6 @@ namespace AirTrafficMonitorGrp11
             _decoder.DataDecoded += OnDataDecoded;
         }
 
-
         public void OnDataDecoded(object sender, ATMEvent e)
         {
             DataRecivedList = new List<TrackDataContainer>();
@@ -32,7 +31,6 @@ namespace AirTrafficMonitorGrp11
                 ATMEvent atmEvent = new ATMEvent(tdcList);
                 DataSorted?.Invoke(this, atmEvent);
             }
-
         }
 
         public List<TrackDataContainer> SortData(List<TrackDataContainer> trackList)
