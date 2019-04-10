@@ -53,5 +53,29 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             Assert.That(_event, Is.Not.Null);
         }
+
+        [TestCase(9999, 20000, 10000)]
+        [TestCase(20000, 9999, 10000)]
+        [TestCase(20000, 30000, 499)]
+        [TestCase(90001, 30000, 10000)]
+        [TestCase(20000, 90001, 10000)]
+        [TestCase(20000, 30000, 20001)]
+        public void Track_outside_airspace(int s1, int s2, int s3)
+        {
+            List<TrackDataContainer> list1 = new List<TrackDataContainer>();
+            
+            TrackDataContainer container = new TrackDataContainer();
+            container.Tag = "ATR423";
+            container.X = s1;
+            container.Y = s2;
+            container.Altitude = s3;
+            container.Timestamp = DateTime.Now;
+            
+            list1.Add(container);
+
+            _decoder.DataDecoded += Raise.EventWith(new ATMEvent(list1));
+
+            Assert.That(_event._tdcList.Count, Is.EqualTo(0));
+        }
     }
 }
