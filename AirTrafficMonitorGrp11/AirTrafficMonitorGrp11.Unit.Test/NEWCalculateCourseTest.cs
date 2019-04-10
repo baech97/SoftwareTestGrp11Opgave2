@@ -54,36 +54,6 @@ namespace AirTrafficMonitorGrp11.Unit.Test
         }
 
         [Test]
-        public void CorrectCourseCalculated()
-        {
-            List<TrackDataContainer> lastflightlist = new List<TrackDataContainer>();
-            List<TrackDataContainer> currentflightlist = new List<TrackDataContainer>();
-
-            
-
-            TrackDataContainer container = new TrackDataContainer();
-            container.Tag = "ATR423";
-            container.X = 20000;
-            container.Y = 10000;
-            container.Altitude = 10000;
-
-            TrackDataContainer container2 = new TrackDataContainer();
-            container2.Tag = "ATR423";
-            container2.X = 10000;
-            container2.Y = 20000;
-            container2.Altitude = 10000;
-
-            currentflightlist.Add(container);
-            lastflightlist.Add(container2);
-
-            _uut.LastFlightData = lastflightlist;
-
-            _velocity.VelocityCalculated += Raise.EventWith(new ATMEvent(currentflightlist));
-
-            Assert.That(_event._tdcList[0].Course, Is.EqualTo(135));
-        }
-
-        [Test]
         public void CorrectCourseCalculated_135()
         {
             List<TrackDataContainer> list1 = new List<TrackDataContainer>();
