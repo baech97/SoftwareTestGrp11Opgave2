@@ -26,8 +26,12 @@ namespace AirTrafficMonitorGrp11
             List<TrackDataContainer> tdcList = new List<TrackDataContainer>();
             tdcList = SortData(DataRecivedList);
 
-            ATMEvent atmEvent = new ATMEvent(tdcList);
-            DataSorted?.Invoke(this, atmEvent);
+            if (tdcList.Count != 0)
+            {
+                ATMEvent atmEvent = new ATMEvent(tdcList);
+                DataSorted?.Invoke(this, atmEvent);
+            }
+           
 
         }
 
