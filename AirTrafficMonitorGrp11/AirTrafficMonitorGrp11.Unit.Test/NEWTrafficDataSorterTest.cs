@@ -75,7 +75,7 @@ namespace AirTrafficMonitorGrp11.Unit.Test
 
             _decoder.DataDecoded += Raise.EventWith(new ATMEvent(list1));
 
-            //tester om eventet er null, da alle tracks er uden for vores område, og derfor bliver eventet ikke fyret.
+            //tester om eventet er null, da alle tracks er uden for vores område, og derfor bliver eventet ikke fyret og forbliver null.
 
             Assert.That(_event, Is.Null);
         }
